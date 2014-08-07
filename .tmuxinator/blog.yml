@@ -1,0 +1,12 @@
+# ~/.tmuxinator/blog.yml
+
+name: blog
+root: ~/Dev/MattCamilli/
+
+windows:
+  - editor:
+      layout: b9c5,199x51,0,0{116x51,0,0,0,82x51,117,0,1}
+      panes:
+        - vim
+        - #empty
+

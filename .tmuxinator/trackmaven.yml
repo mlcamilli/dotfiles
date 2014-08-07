@@ -1,0 +1,14 @@
+# ~/.tmuxinator/trackmaven.yml
+
+name: trackmaven
+root: ~/Dev/TrackMaven/
+
+
+windows:
+  - editor:
+      layout: 57a3,239x62,0,0{144x62,0,0,0,94x62,145,0[94x15,145,0,1,94x30,145,16,2,94x15,145,47,3]}
+      panes:
+        - vim
+        - #empty
+        - sleep 5; maven run python trackmaven/manage.py shell_plus
+        - maven start

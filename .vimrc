@@ -1,9 +1,59 @@
 "Pathogen Settings"
-execute pathogen#infect()
-execute pathogen#helptags()
+"execute pathogen#infect()
+"execute pathogen#helptags()
 syntax enable
 set t_Co=256
+
+
+"NeoBundle Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=/home/boos3y/.vim/bundle/neobundle.vim/
+
+" Required:
+call neobundle#begin(expand('/home/boos3y/.vim/bundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Add or remove your Bundles here:
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'isRuslan/vim-es6'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'hynek/vim-python-pep8-indent'
+NeoBundle 'vim-syntastic/syntastic.git'
+NeoBundle 'jiangmiao/auto-pairs'
+
+" You can specify revision/branch/tag.
+NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+
+" Required:
+call neobundle#end()
+
+" Required:
 filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+"End NeoBundle Scripts-------------------------
+
+
+
+" Set Markdown Format for .md files
+au BufRead,BufNewFile *.md set filetype=markdown
+" Set HTML format for .template files
+au BufRead,BufNewFile *.template set filetype=html
 
 "Tab Settings"
 set tabstop=4
@@ -11,6 +61,11 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smartindent
+
+" File Specific Spacing
+autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 "Search Highlighting"
 set hlsearch
@@ -24,7 +79,7 @@ set textwidth=79
 set formatoptions=qrn1
 set colorcolumn=80
 set nu
-"set relativenumber
+set relativenumber
 "autocmd vimenter * NERDTree
 
 "Ignore pycs
@@ -40,6 +95,7 @@ set directory=~/.vim/tmp/swap//
 
 "NerdTree Settings
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeHijackNetrw=1
 
 "Delte trailing white space
 autocmd BufWritePre * :%s/\s\+$//e
@@ -51,6 +107,9 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\.exe$\|\.so$\|\.dat|\.pyc$'
     \ }
 
+" Visually wrap long lines
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 "Autoclose NERDTree if it's the only window left open.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -65,20 +124,19 @@ map <C-l> <C-w>l
 " Nerd Commentor Binding
 map <C-m> <plug>NERDCommenterInvert
 
-" Auto pep8
-autocmd BufWritePost *.py call Flake8()
-
 
 " More sane line movement
+noremap J G
+noremap K 1G
 noremap H ^
 noremap L $
 vnoremap L g_
 nnoremap D d$
 
-" Set Markdown Format for .md files
-au BufRead,BufNewFile *.md set filetype=markdown
-" Set HTML format for .template files
-au BufRead,BufNewFile *.template set filetype=html
+" Deletes don't add to register
+"noremap d "_d
+"noremap dd "_dd
+
 
 " Set jj to esc
 imap jj <Esc>
@@ -100,6 +158,19 @@ nnoremap ; :
 set synmaxcol=512
 
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_python_checkers = ['flake8']
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
+
 " Vim Multiline Bindings
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_next_key='<C-i>'
@@ -111,3 +182,4 @@ if &term =~ '256color'
     " disable Background Color Erase (BCE)
     set t_ut=
  endif
+

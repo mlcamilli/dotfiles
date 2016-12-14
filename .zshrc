@@ -1,0 +1,1 @@
+/home/boos3y/.zshrc

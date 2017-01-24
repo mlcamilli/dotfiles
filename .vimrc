@@ -32,7 +32,6 @@ NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'hynek/vim-python-pep8-indent'
 NeoBundle 'vim-syntastic/syntastic.git'
-NeoBundle 'jiangmiao/auto-pairs'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -61,6 +60,14 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smartindent
+
+" History Settings
+set history=1000
+
+" Undo Settings
+set undofile
+set undolevels=1000
+set undoreload=10000
 
 " File Specific Spacing
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
@@ -170,6 +177,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
+let g:syntastic_python_flake8_args='--ignore=E501,E225'
 
 " Vim Multiline Bindings
 let g:multi_cursor_use_default_mapping=0

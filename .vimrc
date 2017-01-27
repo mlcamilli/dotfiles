@@ -32,6 +32,9 @@ NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'hynek/vim-python-pep8-indent'
 NeoBundle 'vim-syntastic/syntastic.git'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
+NeoBundle 'ConradIrwin/vim-bracketed-paste'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -178,6 +181,13 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 let g:syntastic_python_flake8_args='--ignore=E501,E225'
+
+
+" Vim Airline
+let g:airline_theme='base16_monokai'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#syntastic#enabled = 1
 
 " Vim Multiline Bindings
 let g:multi_cursor_use_default_mapping=0

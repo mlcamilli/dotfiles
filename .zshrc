@@ -65,6 +65,8 @@ export SHELL zsh
 export NVM_DIR=$HOME/.nvm
 
 setopt no_share_history
+# Add local path to path
+export PATH=~/.local/bin:$PATH
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

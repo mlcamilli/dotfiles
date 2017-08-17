@@ -1,0 +1,12 @@
+node_modules
+bower_components
+git
+.git
+tmp
+.svn
+.hg
+.pyc
+.exe
+.so
+.dat
+.yardoc

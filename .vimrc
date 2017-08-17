@@ -36,6 +36,8 @@ NeoBundle 'ConradIrwin/vim-bracketed-paste'
 NeoBundle 'Quramy/vim-js-pretty-template'
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'mgee/lightline-bufferline'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -193,6 +195,49 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_python_flake8_args='--ignore=E501'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_error_symbol = '❌ '
+
+
+" Lightline Settings
+set showtabline=2
+set noshowmode
+let g:lightline = {
+      \ 'tabline': {
+      \   'left': [['buffers']],
+      \   'right': [[]]
+      \ },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
+      \   'right': [['syntastic']]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \   'buffers': 'lightline#bufferline#buffers'
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel',
+      \   'syntastic': 'error'
+      \ },
+      \ }
+let g:lightline#bufferline#show_number = 2
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
+endfunction
+
 
  "Vim Multiline Bindings
 let g:multi_cursor_use_default_mapping=0

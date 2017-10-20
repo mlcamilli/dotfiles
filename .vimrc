@@ -1,6 +1,3 @@
-"Pathogen Settings"
-"execute pathogen#infect()
-"execute pathogen#helptags()
 syntax enable
 set t_Co=256
 
@@ -27,7 +24,6 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'isRuslan/vim-es6'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'hynek/vim-python-pep8-indent'
@@ -38,6 +34,10 @@ NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascr
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mgee/lightline-bufferline'
+NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+NeoBundle 'junegunn/fzf.vim'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'sheerun/vim-polyglot'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -170,11 +170,6 @@ if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
@@ -238,7 +233,9 @@ function! s:syntastic()
   call lightline#update()
 endfunction
 
+nmap <C-p> :FZF<CR>
 
+let g:lightline#bufferline#filename_modifier=":t"
  "Vim Multiline Bindings
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_next_key='<C-i>'

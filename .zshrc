@@ -58,6 +58,8 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export TERM=xterm-256color
 export EDITOR=vim
@@ -97,6 +99,7 @@ alias fig='docker-compose'
 alias fuck='sudo $(fc -ln -1)'
 alias delpyc="sudo find . -name '*.pyc' -delete"
 alias mux='tmuxinator'
+
 
 export NVM_DIR="/home/boos3y/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

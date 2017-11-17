@@ -38,6 +38,7 @@ NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 NeoBundle 'junegunn/fzf.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'sheerun/vim-polyglot'
+NeoBundle 'qpkorr/vim-bufkill'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -105,7 +106,20 @@ set backupdir=~/.vim/tmp/backup//
 set directory=~/.vim/tmp/swap//
 
 "NerdTree Settings
-map <C-n> :NERDTreeToggle<CR>
+function! NERDTreeToggleInCurDir()
+	" If NERDTree is open in the current buffer
+	if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+		exe ":NERDTreeClose"
+	else
+		if (expand("%:t") != '')
+ 			exe ":NERDTreeFind"
+		else
+ 			exe ":NERDTreeToggle"
+		endif
+	endif
+endfunction
+map <C-n> :call NERDTreeToggleInCurDir()<CR>
+"map <C-n> :NERDTreeToggle %<CR>
 let NERDTreeHijackNetrw=1
 
 "Delte trailing white space
@@ -113,10 +127,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 "Ctrl - P Settings
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,/node_modules/*
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  'node_modules\|\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|^log\|public\/system\|tmp|node_modules$',
-    \ 'file': '\.exe$\|\.so$\|\.dat|\.pyc$'
-    \ }
 
 " Visually wrap long lines
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -148,6 +158,7 @@ imap jj <Esc>
 
 " Spellcheck toggle
 map <F5> :setlocal spell! spelllang=en_us<CR>
+nmap <F7> :set rnu! nu!<CR>
 
 " Search settings
 set ignorecase
@@ -178,6 +189,7 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 " Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
+let g:python_highlight_all = 1
 set statusline+=%*
 
 let g:syntastic_javascript_checkers = ['eslint']
@@ -233,7 +245,13 @@ function! s:syntastic()
   call lightline#update()
 endfunction
 
-nmap <C-p> :FZF<CR>
+" Bind FZF to ctrl + P
+"nmap <C-p> :FZF<CR>
+nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+" Bind \ + ` to search open buffers
+nmap <Leader>` :Buffers<CR>
+" Bind \ + - to remove current buffer
+nmap <Leader>- :BD<CR>
 
 let g:lightline#bufferline#filename_modifier=":t"
  "Vim Multiline Bindings

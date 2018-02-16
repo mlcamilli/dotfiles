@@ -99,7 +99,22 @@ alias fig='docker-compose'
 alias fuck='sudo $(fc -ln -1)'
 alias delpyc="sudo find . -name '*.pyc' -delete"
 alias mux='tmuxinator'
+alias ku="kubectl"
+kurestart () { ku get pods "$@" -o yaml | ku replace --force -f -}
 
 
 export NVM_DIR="/home/boos3y/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+if [ $commands[kubectl] ]; then
+  source <(kubectl completion zsh)
+fi
+if [ $commands[ku] ]; then
+  source <(kubectl completion zsh)
+fi
+
+
+# VIM BASH SETTINGS?
+#bindkey -v
+#bindkey 'jj' vi-cmd-mode
+#bindkey '^j' beginning-of-line
+#bindkey '^l' end-of-line

@@ -105,12 +105,6 @@ kurestart () { ku get pods "$@" -o yaml | ku replace --force -f -}
 
 export NVM_DIR="/home/boos3y/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-if [ $commands[kubectl] ]; then
-  source <(kubectl completion zsh)
-fi
-if [ $commands[ku] ]; then
-  source <(kubectl completion zsh)
-fi
 
 
 # VIM BASH SETTINGS?

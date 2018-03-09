@@ -26,8 +26,6 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'hynek/vim-python-pep8-indent'
-NeoBundle 'vim-syntastic/syntastic.git'
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
 NeoBundle 'Quramy/vim-js-pretty-template'
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
@@ -39,9 +37,8 @@ NeoBundle 'junegunn/fzf.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'sheerun/vim-polyglot'
 NeoBundle 'qpkorr/vim-bufkill'
-
-" You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+NeoBundle 'w0rp/ale'
 
 " Required:
 call neobundle#end()
@@ -61,6 +58,7 @@ au BufRead,BufNewFile *.md set filetype=markdown
 " Set HTML format for .template files
 au BufRead,BufNewFile *.template set filetype=html
 
+set backspace=indent,eol,start
 "Tab Settings"
 set tabstop=4
 set shiftwidth=4
@@ -175,7 +173,6 @@ nnoremap ; :
 " Only color up to the first 512 characters
 set synmaxcol=1000
 
-
 "" The Silver Searcher
 if executable('ag')
   " Use ag over grep
@@ -186,22 +183,28 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-let g:python_highlight_all = 1
-set statusline+=%*
 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_python_checkers = ['flake8']
+" Ale Settings
+let g:ale_open_list = 1
+"let g:ale_sign_error = "\uf00d"
+let g:ale_sign_error = "❌"
+let g:ale_sign_warning = "\uf12a"
+let g:ale_python_flake8_args="--ignore=E501"
+hi ALEWarningSign ctermbg=DarkMagenta
+hi ALEWarningSign ctermfg=White
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-let g:syntastic_python_flake8_args='--ignore=E501'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_error_symbol = '❌ '
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
 
 
 " Lightline Settings
@@ -215,20 +218,21 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
-      \   'right': [['syntastic']]
+      \   'right': [['ale']]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head'
       \ },
       \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
+      \   'ale': 'LinterStatus',
       \   'buffers': 'lightline#bufferline#buffers'
       \ },
       \ 'component_type': {
       \   'buffers': 'tabsel',
-      \   'syntastic': 'error'
+      \   'ale': 'error'
       \ },
       \ }
+
 let g:lightline#bufferline#show_number = 2
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
@@ -240,10 +244,6 @@ nmap <Leader>7 <Plug>lightline#bufferline#go(7)
 nmap <Leader>8 <Plug>lightline#bufferline#go(8)
 nmap <Leader>9 <Plug>lightline#bufferline#go(9)
 nmap <Leader>0 <Plug>lightline#bufferline#go(10)
-function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
-endfunction
 
 " Bind FZF to ctrl + P
 "nmap <C-p> :FZF<CR>

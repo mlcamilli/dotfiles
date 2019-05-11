@@ -39,6 +39,8 @@ NeoBundle 'sheerun/vim-polyglot'
 NeoBundle 'qpkorr/vim-bufkill'
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
 NeoBundle 'w0rp/ale'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'mxw/vim-jsx'
 
 " Required:
 call neobundle#end()
@@ -52,6 +54,8 @@ NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
 
+" Deoplete settings
+let g:deoplete#enable_at_startup = 1
 
 " Set Markdown Format for .md files
 au BufRead,BufNewFile *.md set filetype=markdown
@@ -84,7 +88,7 @@ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 set hlsearch
 
 "Color"
-colorscheme monokai
+colorscheme gruvbox
 
 "LineWrap"
 set wrap
@@ -93,7 +97,7 @@ set nu
 set relativenumber
 
 "Ignore pycs
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '.git', '.gitignore']
 
 "Swap settings
 set backup
@@ -185,13 +189,29 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 
 " Ale Settings
+let g:ale_lint_delay = 800
+let g:ale_cache_executable_check_failures = 1
 let g:ale_open_list = 1
-"let g:ale_sign_error = "\uf00d"
-let g:ale_sign_error = "❌"
+let g:ale_sign_error = "\uf00d"
 let g:ale_sign_warning = "\uf12a"
-let g:ale_python_flake8_args="--ignore=E501"
+let g:ale_python_flake8_options="--ignore=E501"
 hi ALEWarningSign ctermbg=DarkMagenta
 hi ALEWarningSign ctermfg=White
+
+" Black Settings
+"let g:black_linelength = 120
+let g:ale_python_black_options = '--line-length 120'
+let g:ale_fixers = {
+\    'python': ['black'],
+\    'javascript': ['prettier']
+\}
+let g:ale_linters= {
+\    'python': ['flake8'],
+\    'javascript': ['eslint', 'stylelint'],
+\    'jsx': ['eslint', 'stylelint']
+\}
+let g:ale_fix_on_save = 1
+
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -248,6 +268,7 @@ nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 " Bind FZF to ctrl + P
 "nmap <C-p> :FZF<CR>
 nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+let NERDTreeShowHidden=1
 " Bind \ + ` to search open buffers
 nmap <Leader>` :Buffers<CR>
 " Bind \ + - to remove current buffer

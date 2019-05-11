@@ -1,0 +1,13 @@
+# ~/.tmuxinator/trackmaven.yml
+
+name: trackmaven-spa
+root: ~/Dev/trackmaven-spa/
+
+
+windows:
+  - editor:
+      layout: 4063,319x87,0,0{176x87,0,0,4,142x87,177,0[142x43,177,0,5,142x43,177,44,6]}
+      panes:
+        - vim
+        - #empty
+        - fig run --service-ports builder gulp --env=production --debug=false

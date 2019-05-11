@@ -3,6 +3,7 @@
 
 # Path to your oh-my-zsh installation.
   export ZSH=/home/boos3y/.oh-my-zsh
+  export PATH=$PATH:/snap/bin
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -51,7 +52,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker pyenv tmuxinator virtualenvwrapper zsh-autosuggestions safe-paste colored-man-pages)
+plugins=(git docker pyenv tmuxinator zsh-autosuggestions safe-paste colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -68,7 +69,7 @@ export NVM_DIR=$HOME/.nvm
 
 setopt no_share_history
 # Add local path to path
-export PATH=~/.local/bin:$PATH
+export PATH=~/go/bin:~/.local/bin:$PATH
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -100,6 +101,9 @@ alias fuck='sudo $(fc -ln -1)'
 alias delpyc="sudo find . -name '*.pyc' -delete"
 alias mux='tmuxinator'
 alias ku="kubectl"
+alias dc='docker-compose'
+alias skyvpn='sudo openvpn --config ~/.vpn/client.ovpn'
+alias kudown='kubectl get pods --all-namespaces | grep -v Running'
 kurestart () { ku get pods "$@" -o yaml | ku replace --force -f -}
 
 
@@ -112,3 +116,8 @@ export NVM_DIR="/home/boos3y/.nvm"
 #bindkey 'jj' vi-cmd-mode
 #bindkey '^j' beginning-of-line
 #bindkey '^l' end-of-line
+#
+#Turn off auto cd
+unsetopt AUTO_CD
+export PATH=$PATH:/home/boos3y/bin/slack-theme
+export SLACK_THEME_SHELL_PROFILE="/home/boos3y/.zshrc"

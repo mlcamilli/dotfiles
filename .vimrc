@@ -89,6 +89,7 @@ set hlsearch
 
 "Color"
 colorscheme gruvbox
+set bg=dark
 
 "LineWrap"
 set wrap

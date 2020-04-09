@@ -51,6 +51,7 @@
   "python.formatting.blackPath": "/home/boos3y/.local/bin/black",
   "python.linting.flake8Path": "/usr/bin/flake8",
   "python.formatting.provider": "black",
+  "editor.formatOnSaveTimeout": 5000,
   "python.formatting.blackArgs": ["--line-length", "120"],
   "python.jediEnabled": true,
   "editor.formatOnSave": true,
@@ -64,13 +65,16 @@
   "python.linting.enabled": true,
   "python.testing.unittestEnabled": false,
   "python.testing.nosetestsEnabled": false,
-  "python.testing.pyTestEnabled": false,
+  "python.testing.pytestEnabled": false,
   "python.testing.promptToConfigure": false,
   "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
-  "editor.formatOnSaveTimeout": 5000,
   "explorer.confirmDelete": false,
   "editor.minimap.enabled": true,
   "editor.renderWhitespace": "none",
   "breadcrumbs.enabled": false,
-  "search.followSymlinks": false
+  "search.followSymlinks": false,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "editor.multiCursorModifier": "alt",
+  "explorer.confirmDragAndDrop": false
 }

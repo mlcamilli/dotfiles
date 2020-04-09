@@ -69,7 +69,7 @@ export NVM_DIR=$HOME/.nvm
 
 setopt no_share_history
 # Add local path to path
-export PATH=~/go/bin:~/.local/bin:$PATH
+export PATH=/usr/local/go/bin:~/.local/bin:$PATH
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -104,7 +104,9 @@ alias ku="kubectl"
 alias dc='docker-compose'
 alias skyvpn='sudo openvpn --config ~/.vpn/client.ovpn'
 alias kudown='kubectl get pods --all-namespaces | grep -v Running'
+alias ek="eksctl"
 kurestart () { ku get pods "$@" -o yaml | ku replace --force -f -}
+uwsgitop () { ku exec -it "$@" uwsgitop localhost:5050}
 
 
 export NVM_DIR="/home/boos3y/.nvm"

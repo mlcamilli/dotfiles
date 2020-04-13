@@ -1,6 +1,7 @@
 {
   "keyboard.dispatch": "keyCode",
   "editor.fontFamily": "'Hack'",
+  "vim.timeout": 200,
   "vim.insertModeKeyBindings": [
     {
       "before": ["j", "j"],
@@ -49,7 +50,7 @@
   ],
   "window.zoomLevel": 0,
   "python.formatting.blackPath": "/home/boos3y/.local/bin/black",
-  "python.linting.flake8Path": "/usr/bin/flake8",
+  "python.linting.flake8Path": "/home/boos3y/.local/bin/flake8",
   "python.formatting.provider": "black",
   "editor.formatOnSaveTimeout": 5000,
   "python.formatting.blackArgs": ["--line-length", "120"],

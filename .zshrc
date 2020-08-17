@@ -123,3 +123,5 @@ export NVM_DIR="/home/boos3y/.nvm"
 unsetopt AUTO_CD
 export PATH=$PATH:/home/boos3y/bin/slack-theme
 export SLACK_THEME_SHELL_PROFILE="/home/boos3y/.zshrc"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

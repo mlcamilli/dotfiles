@@ -1,61 +1,51 @@
 syntax enable
 set t_Co=256
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-"NeoBundle Scripts-----------------------------
+
 if &compatible
   set nocompatible               " Be iMproved
 endif
 
-" Required:
-set runtimepath+=/home/boos3y/.vim/bundle/neobundle.vim/
 
-" Required:
-call neobundle#begin(expand('/home/boos3y/.vim/bundle'))
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
 
+call plug#begin('~/.vim/plugged')
 " Add or remove your Bundles here:
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'isRuslan/vim-es6'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'ConradIrwin/vim-bracketed-paste'
-NeoBundle 'Quramy/vim-js-pretty-template'
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'mgee/lightline-bufferline'
-NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-NeoBundle 'junegunn/fzf.vim'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'sheerun/vim-polyglot'
-NeoBundle 'qpkorr/vim-bufkill'
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-NeoBundle 'w0rp/ale'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'mxw/vim-jsx'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'flazz/vim-colorschemes'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'mgee/lightline-bufferline'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'sheerun/vim-polyglot'
+Plug 'qpkorr/vim-bufkill'
+Plug 'Shougo/vimshell', { 'rev' : '3787e5' }
+" Plug 'dense-analysis/ale'
+Plug 'tpope/vim-surround'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
 
-" Required:
-call neobundle#end()
+let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-css', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-python']
+
+
+set listchars=space:·,precedes:«,extends:»,eol:↲,tab:▸\
+set list
 
 " Required:
 filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-"End NeoBundle Scripts-------------------------
-
-
-" Deoplete settings
-let g:deoplete#enable_at_startup = 1
 
 " Set Markdown Format for .md files
 au BufRead,BufNewFile *.md set filetype=markdown
@@ -88,7 +78,7 @@ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 set hlsearch
 
 "Color"
-colorscheme gruvbox
+colorscheme dracula
 set bg=dark
 
 "LineWrap"
@@ -104,9 +94,9 @@ let NERDTreeIgnore = ['\.pyc$', '.git', '.gitignore']
 set backup
 set noswapfile
 
-set undodir=~/.vim/tmp/undo//
-set backupdir=~/.vim/tmp/backup//
-set directory=~/.vim/tmp/swap//
+set undodir=~/.vim/tmp/undo/
+set backupdir=~/.vim/tmp/backup/
+set directory=~/.vim/tmp/swap/
 
 "NerdTree Settings
 function! NERDTreeToggleInCurDir()
@@ -190,28 +180,28 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 
 " Ale Settings
-let g:ale_lint_delay = 800
-let g:ale_cache_executable_check_failures = 1
-let g:ale_open_list = 1
-let g:ale_sign_error = "\uf00d"
-let g:ale_sign_warning = "\uf12a"
-let g:ale_python_flake8_options="--ignore=E501"
-hi ALEWarningSign ctermbg=DarkMagenta
-hi ALEWarningSign ctermfg=White
+"let g:ale_lint_delay = 500
+"let g:ale_cache_executable_check_failures = 1
+"let g:ale_disable_lsp = 1
+"let g:ale_open_list = 1
+"let g:ale_sign_error = "\uf00d"
+"let g:ale_sign_warning = "\uf12a"
+"let g:ale_python_flake8_options="--ignore=E501"
+"hi ALEWarningSign ctermbg=DarkMagenta
+"hi ALEWarningSign ctermfg=White
 
 " Black Settings
-"let g:black_linelength = 120
-let g:ale_python_black_options = '--line-length 120'
-let g:ale_fixers = {
-\    'python': ['black'],
-\    'javascript': ['prettier']
-\}
-let g:ale_linters= {
-\    'python': ['flake8'],
-\    'javascript': ['eslint', 'stylelint'],
-\    'jsx': ['eslint', 'stylelint']
-\}
-let g:ale_fix_on_save = 1
+"let g:ale_python_black_options = '--line-length 120'
+"let g:ale_fixers = {
+"\    'python': ['black'],
+"\    'javascript': ['prettier']
+"\}
+"let g:ale_linters= {
+"\    'python': ['flake8', "mypy"],
+"\    'javascript': ['eslint', 'stylelint'],
+"\    'jsx': ['eslint', 'stylelint']
+"\}
+"let g:ale_fix_on_save = 1
 
 
 function! LinterStatus() abort

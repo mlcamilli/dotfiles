@@ -107,6 +107,7 @@ alias kudown='kubectl get pods --all-namespaces | grep -v Running'
 alias ek="eksctl"
 kurestart () { ku get pods "$@" -o yaml | ku replace --force -f -}
 uwsgitop () { ku exec -it "$@" uwsgitop localhost:5050}
+export DISABLE_AUTO_TITLE='true'
 
 
 export NVM_DIR="/home/boos3y/.nvm"

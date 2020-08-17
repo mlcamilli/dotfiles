@@ -33,6 +33,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'qpkorr/vim-bufkill'
 Plug 'Shougo/vimshell', { 'rev' : '3787e5' }
+Plug 'ryanoasis/vim-devicons'
 " Plug 'dense-analysis/ale'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -40,6 +41,7 @@ call plug#end()
 
 let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-css', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-python']
 
+set encoding=UTF-8
 
 set listchars=space:·,precedes:«,extends:»,eol:↲,tab:▸\
 set list
@@ -78,8 +80,10 @@ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 set hlsearch
 
 "Color"
+let g:dracula_colorterm = 0
 colorscheme dracula
 set bg=dark
+set termguicolors
 
 "LineWrap"
 set wrap

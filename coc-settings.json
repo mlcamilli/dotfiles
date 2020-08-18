@@ -23,5 +23,6 @@
     "typescript"
   ],
   "diagnostic.errorSign": "",
-  "diagnostic.warningSign": ""
+  "diagnostic.warningSign": "",
+  "python.analysis.disabled": ["unresolved-import"]
 }

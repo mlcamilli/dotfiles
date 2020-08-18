@@ -34,7 +34,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'qpkorr/vim-bufkill'
 Plug 'Shougo/vimshell', { 'rev' : '3787e5' }
 Plug 'ryanoasis/vim-devicons'
-" Plug 'dense-analysis/ale'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -289,3 +288,5 @@ if &term =~ '256color'
     " disable Background Color Erase (BCE)
     set t_ut=
 endif
+
+autocmd BufWritePre *.py :CocCommand python.sortImports

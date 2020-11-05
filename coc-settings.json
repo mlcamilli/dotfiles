@@ -8,7 +8,7 @@
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
-  "python.linting.mypyEnabled": false,
+  "python.linting.mypyEnabled": true,
   "python.linting.mypyPath": "/home/boos3y/.local/bin/mypy",
   "python.linting.mypyArgs": [
     "--ignore-missing-imports",
@@ -24,5 +24,13 @@
   ],
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": "",
-  "python.analysis.disabled": ["unresolved-import"]
+  "python.analysis.disabled": ["unresolved-import"],
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  }
 }

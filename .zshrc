@@ -126,3 +126,6 @@ export PATH=$PATH:/home/boos3y/bin/slack-theme
 export SLACK_THEME_SHELL_PROFILE="/home/boos3y/.zshrc"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform

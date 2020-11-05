@@ -36,6 +36,8 @@ Plug 'Shougo/vimshell', { 'rev' : '3787e5' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'hashivim/vim-terraform'
+
 call plug#end()
 
 let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-css', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-python']
@@ -100,6 +102,10 @@ set noswapfile
 set undodir=~/.vim/tmp/undo/
 set backupdir=~/.vim/tmp/backup/
 set directory=~/.vim/tmp/swap/
+
+"Terraform Settings
+let g:terraform_fmt_on_save = 1
+let g:terraform_align = 1
 
 "NerdTree Settings
 function! NERDTreeToggleInCurDir()

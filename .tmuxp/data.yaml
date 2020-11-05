@@ -1,4 +1,4 @@
-session_name: 'rhythm'
+session_name: 'data'
 windows:
 - focus: 'true'
   layout: ba71,179x52,0,0{89x52,0,0,0,89x52,90,0[89x26,90,0,1,89x25,90,27,2]}
@@ -6,10 +6,10 @@ windows:
   panes:
   - focus: true
     shell_command:
-    - cd /home/boos3y/dev/rhythm-app
+    - cd /home/boos3y/dev/rhythm-data
     - vim
   - shell_command:
-    - cd /home/boos3y/dev/rhythm-app
+    - cd /home/boos3y/dev/rhythm-data
   - shell_command:
-    - cd /home/boos3y/dev/rhythm-app/frontendnx
-  window_name: rhythm
+    - cd /home/boos3y/dev/rhythm-data
+  window_name: rhythm-data

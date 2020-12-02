@@ -1,4 +1,6 @@
 {
+  "suggest.noselect": false,
+  "suggest.enablePreselect": false,
   "python.formatting.blackPath": "/home/boos3y/.local/bin/black",
   "python.linting.flake8Path": "/home/boos3y/.local/bin/flake8",
   "python.formatting.provider": "black",

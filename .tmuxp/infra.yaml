@@ -1,0 +1,13 @@
+session_name: 'infra'
+windows:
+- focus: 'true'
+  layout: ba71,179x52,0,0{89x52,0,0,0,89x52,90,0[89x26,90,0,1,89x25,90,27,2]}
+  options: {}
+  panes:
+  - focus: true
+    shell_command:
+    - cd /home/boos3y/dev/rhythm-infra
+    - vim
+  - shell_command:
+    - cd /home/boos3y/dev/rhythm-infra
+  window_name: infra

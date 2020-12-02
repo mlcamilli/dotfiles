@@ -296,3 +296,5 @@ if &term =~ '256color'
 endif
 
 autocmd BufWritePre *.py :CocCommand python.sortImports
+" Make tab autocomplete
+inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"

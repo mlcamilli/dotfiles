@@ -52,7 +52,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker pyenv tmuxinator zsh-autosuggestions safe-paste colored-man-pages docker-compose)
+plugins=(git docker pyenv tmuxinator zsh-autosuggestions safe-paste colored-man-pages docker-compose asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -65,7 +65,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export TERM=xterm-256color
 export EDITOR=vim
 export SHELL zsh
-export NVM_DIR=$HOME/.nvm
 
 setopt no_share_history
 # Add local path to path
@@ -105,13 +104,10 @@ alias dc='docker-compose'
 alias skyvpn='sudo openvpn --config ~/.vpn/client.ovpn'
 alias kudown='kubectl get pods --all-namespaces | grep -v Running'
 alias ek="eksctl"
+alias release="git log --pretty=format:'* %s' --reverse \`git describe --tags --abbrev=0\`..HEAD"
 kurestart () { ku get pods "$@" -o yaml | ku replace --force -f -}
 uwsgitop () { ku exec -it "$@" uwsgitop localhost:5050}
 export DISABLE_AUTO_TITLE='true'
-
-
-export NVM_DIR="/home/boos3y/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 
 # VIM BASH SETTINGS?
@@ -129,3 +125,4 @@ export SLACK_THEME_SHELL_PROFILE="/home/boos3y/.zshrc"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
+. $HOME/.asdf/asdf.sh

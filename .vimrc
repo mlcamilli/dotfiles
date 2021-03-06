@@ -22,7 +22,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'flazz/vim-colorschemes'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
@@ -79,6 +79,16 @@ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 "Search Highlighting"
 set hlsearch
+set ignorecase
+set smartcase
+
+" search characters as they're entered
+set incsearch
+
+" Current line highlighting
+set cursorline
+
+
 
 "Color"
 let g:dracula_colorterm = 0
@@ -162,13 +172,6 @@ imap jj <Esc>
 map <F5> :setlocal spell! spelllang=en_us<CR>
 nmap <F7> :set rnu! nu!<CR>
 
-" Search settings
-set ignorecase
-set smartcase
-
-" search characters as they're entered
-set incsearch
-
 " Paste mode
 nnoremap <F6> :set paste!<cr>
 
@@ -186,31 +189,6 @@ endif
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-
-
-" Ale Settings
-"let g:ale_lint_delay = 500
-"let g:ale_cache_executable_check_failures = 1
-"let g:ale_disable_lsp = 1
-"let g:ale_open_list = 1
-"let g:ale_sign_error = "\uf00d"
-"let g:ale_sign_warning = "\uf12a"
-"let g:ale_python_flake8_options="--ignore=E501"
-"hi ALEWarningSign ctermbg=DarkMagenta
-"hi ALEWarningSign ctermfg=White
-
-" Black Settings
-"let g:ale_python_black_options = '--line-length 120'
-"let g:ale_fixers = {
-"\    'python': ['black'],
-"\    'javascript': ['prettier']
-"\}
-"let g:ale_linters= {
-"\    'python': ['flake8', "mypy"],
-"\    'javascript': ['eslint', 'stylelint'],
-"\    'jsx': ['eslint', 'stylelint']
-"\}
-"let g:ale_fix_on_save = 1
 
 
 function! LinterStatus() abort
@@ -276,11 +254,14 @@ nmap <Leader>- :BD<CR>
 
 let g:lightline#bufferline#filename_modifier=":t"
  "Vim Multiline Bindings
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-i>'
-let g:multi_cursor_prev_key='<C-u>'
-let g:multi_cursor_skip_key='<C-o>'
-let g:multi_cursor_quit_key='<Esc>'
+let g:VM_maps = {}
+let g:VM_default_mappings = 0
+let g:VM_maps['Find Under']         = '<C-d>'
+let g:VM_maps['Find Subword Under'] = '<C-d>'
+"let g:VM_maps["Select Cursor Down"] = '<M-C-Down>'
+"let g:VM_maps["Select Cursor Up"]   = '<M-C-Up>'
+
+
 
 " ES6 HTML Highlighting
 autocmd FileType javascript JsPreTmpl html

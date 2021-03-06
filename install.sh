@@ -4,7 +4,7 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # vim
 ln -s ${BASEDIR}/.vimrc ~/.vimrc
-
+ln -s ${BASEDIR}/coc-settings.json ~/.vim/coc-settings.json
 # zsh
 ln -s ${BASEDIR}/.zshrc ~/.zshrc
 

@@ -126,3 +126,10 @@ export SLACK_THEME_SHELL_PROFILE="/home/boos3y/.zshrc"
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 . $HOME/.asdf/asdf.sh
+
+if [ -f ~/.env_file ]; then
+    source ~/.env_file
+else
+    print "~/.env_file not found."
+fi
+

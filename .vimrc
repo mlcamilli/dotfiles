@@ -103,7 +103,7 @@ set nu
 set relativenumber
 
 "Ignore pycs
-let NERDTreeIgnore = ['\.pyc$', '.git', '.gitignore']
+let NERDTreeIgnore = ['\.pyc$', '.git$', '.gitignore']
 
 "Swap settings
 set backup

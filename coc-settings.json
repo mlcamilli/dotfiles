@@ -18,6 +18,7 @@
     "--show-column-numbers"
   ],
   "python.sortImports.path": "/home/boos3y/.local/bin/isort",
+  "python.sortImports.args": ["--profile=black"],
   "coc.preferences.formatOnSaveFiletypes": [
     "python",
     "json",

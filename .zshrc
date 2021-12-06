@@ -119,6 +119,7 @@ export DISABLE_AUTO_TITLE='true'
 #Turn off auto cd
 unsetopt AUTO_CD
 export PATH=$PATH:/home/boos3y/bin/slack-theme
+export PATH=$PATH:/home/boos3y/.asdf/installs/nodejs/14.5.0/.npm/bin/
 export SLACK_THEME_SHELL_PROFILE="/home/boos3y/.zshrc"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

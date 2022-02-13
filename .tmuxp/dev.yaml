@@ -6,8 +6,6 @@ windows:
   panes:
   - focus: true
     shell_command:
-    - cd /home/boos3y/dev/
     - vim
   - shell_command:
-    - cd /home/boos3y/dev/
   window_name: dev

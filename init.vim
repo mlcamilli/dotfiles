@@ -24,19 +24,21 @@ Plug 'tpope/vim-surround'
 Plug 'flazz/vim-colorschemes'
 Plug 'mg979/vim-visual-multi'
 Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'mgee/lightline-bufferline'
+"Plug 'mgee/lightline-bufferline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'qpkorr/vim-bufkill'
 Plug 'Shougo/vimshell', { 'rev' : '3787e5' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'hashivim/vim-terraform'
+Plug 'nvim-lualine/lualine.nvim'
 
 call plug#end()
 
@@ -109,9 +111,9 @@ let NERDTreeIgnore = ['\.pyc$', '.git$', '.gitignore']
 set backup
 set noswapfile
 
-set undodir=~/.vim/tmp/undo/
-set backupdir=~/.vim/tmp/backup/
-set directory=~/.vim/tmp/swap/
+set undodir=~/.vim/nvim/tmp/undo/
+set backupdir=~/.vim/nvim/tmp/backup/
+set directory=~/.vim/nvim/tmp/swap/
 
 "Terraform Settings
 let g:terraform_fmt_on_save = 1
@@ -167,6 +169,16 @@ nnoremap D d$
 
 " Set jj to esc
 imap jj <Esc>
+
+" Copy/Paste
+set clipboard=unnamedplus
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 
 " Spellcheck toggle
 map <F5> :setlocal spell! spelllang=en_us<CR>

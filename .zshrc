@@ -95,13 +95,11 @@ export PATH=/usr/local/go/bin:~/.local/bin:$PATH
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias fig='docker-compose'
 alias fuck='sudo $(fc -ln -1)'
 alias delpyc="sudo find . -name '*.pyc' -delete"
 alias mux='tmuxp'
 alias ku="kubectl"
-alias dc='docker-compose'
-alias skyvpn='sudo openvpn --config ~/.vpn/client.ovpn'
+alias dc='docker compose'
 alias kudown='kubectl get pods --all-namespaces | grep -v Running'
 alias ek="eksctl"
 alias release="git log --pretty=format:'* %s' --reverse \`git describe --tags --abbrev=0\`..HEAD"
@@ -134,3 +132,9 @@ else
     print "~/.env_file not found."
 fi
 
+# Start Docker daemon automatically when logging in if not running.
+RUNNING=$(ps aux | grep dockerd | grep -v grep)
+if [ -z "$RUNNING" ]; then
+    sudo dockerd > /dev/null 2>&1 &
+    disown
+fi

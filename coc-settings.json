@@ -1,6 +1,7 @@
 {
   "codeLens.enable": true,
   "codeLens.separator": "▸",
+  "suggest.enablePreview": true,
   "suggest.noselect": false,
   "suggest.enablePreselect": false,
   "suggest.completionItemKindLabels": {

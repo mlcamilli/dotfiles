@@ -6,6 +6,6 @@ windows:
   panes:
   - focus: true
     shell_command:
-    - vim
+    - nvim
   - shell_command:
   window_name: dev

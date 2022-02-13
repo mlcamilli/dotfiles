@@ -1,4 +1,6 @@
 {
+  "codeLens.enable": true,
+  "codeLens.separator": "▸",
   "suggest.noselect": false,
   "suggest.enablePreselect": false,
   "suggest.completionItemKindLabels": {
@@ -33,7 +35,7 @@
   "python.linting.flake8Path": "/home/boos3y/.local/bin/flake8",
   "python.formatting.provider": "black",
   "python.formatting.blackArgs": ["--line-length", "120"],
-  "pyright.enable" :true,
+  "pyright.enable": true,
   "python.linting.flake8Args": ["--ignore=E501", "--verbose"],
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
@@ -57,7 +59,9 @@
   "diagnostic.warningSign": "",
   "diagnostic.hintSign": "",
   "diagnostic.infoSign": "",
-  "python.analysis.diagnosticSeverityOverrides": {"reportMissingImports": "none"},
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "none"
+  },
   "languageserver": {
     "terraform": {
       "command": "terraform-lsp",

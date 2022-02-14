@@ -14,11 +14,11 @@ endif
 
 
 
-
 call plug#begin('~/.vim/plugged')
 " Add or remove your Bundles here:
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'flazz/vim-colorschemes'
@@ -28,7 +28,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
-"Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'qpkorr/vim-bufkill'
 Plug 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -102,8 +101,6 @@ set formatoptions=qrn1
 set nu
 set relativenumber
 
-"Ignore pycs
-let NERDTreeIgnore = ['\.pyc$', '.git$', '.gitignore']
 
 "Swap settings
 set backup
@@ -117,22 +114,82 @@ set directory=~/.vim/nvim/tmp/swap/
 let g:terraform_fmt_on_save = 1
 let g:terraform_align = 1
 
-"NerdTree Settings
-function! NERDTreeToggleInCurDir()
-	" If NERDTree is open in the current buffer
-	if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-		exe ":NERDTreeClose"
-	else
-		if (expand("%:t") != '')
- 			exe ":NERDTreeFind"
-		else
- 			exe ":NERDTreeToggle"
-		endif
-	endif
-endfunction
-map <C-n> :call NERDTreeToggleInCurDir()<CR>
-"map <C-n> :NERDTreeToggle %<CR>
-let NERDTreeHijackNetrw=1
+
+lua << END
+require'nvim-tree'.setup {
+  disable_netrw        = true,
+  hijack_netrw         = true,
+  open_on_setup        = false,
+  ignore_ft_on_setup   = {},
+  auto_close           = false,
+  auto_reload_on_write = true,
+  open_on_tab          = false,
+  hijack_cursor        = false,
+  update_cwd           = false,
+  update_to_buf_dir    = {
+    enable = true,
+    auto_open = true,
+  },
+  diagnostics = {
+    enable = false,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    }
+  },
+  update_focused_file = {
+    enable      = false,
+    update_cwd  = false,
+    ignore_list = {}
+  },
+  system_open = {
+    cmd  = nil,
+    args = {}
+  },
+  filters = {
+    dotfiles = false,
+    custom = {}
+  },
+  git = {
+    enable = true,
+    ignore = true,
+    timeout = 500,
+  },
+  view = {
+    width = 30,
+    height = 30,
+    hide_root_folder = false,
+    side = 'left',
+    auto_resize = false,
+    mappings = {
+      custom_only = false,
+      list = {}
+    },
+    number = false,
+    relativenumber = false,
+    signcolumn = "yes"
+  },
+  trash = {
+    cmd = "trash",
+    require_confirm = true
+  },
+  actions = {
+    change_dir = {
+      global = false,
+    },
+    open_file = {
+      quit_on_open = false,
+    }
+  }
+}
+END
+
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeFindFile<CR>
+
 
 "Delte trailing white space
 autocmd BufWritePre * :%s/\s\+$//e
@@ -143,10 +200,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,/node_modules/*
 " Visually wrap long lines
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
-
-"Autoclose NERDTree if it's the only window left open.
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" }}}
 
 " Better pane management
 map <C-h> <C-w>h
@@ -227,7 +280,7 @@ lua << END
     lualine_y = {},
     lualine_z = {}
   },
-  tabline = {},
+  tabline = {lualine_a = {'buffers'},lualine_z = {'tabs'}},
   extensions = {}
 }
 END
@@ -247,7 +300,6 @@ nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 " Bind FZF to ctrl + P
 "nmap <C-p> :FZF<CR>
 nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
-let NERDTreeShowHidden=1
 " Bind \ + ` to search open buffers
 nmap <Leader>` :Buffers<CR>
 " Bind \ + - to remove current buffer
@@ -294,7 +346,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> <c-K> :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

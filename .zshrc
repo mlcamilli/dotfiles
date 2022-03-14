@@ -100,6 +100,7 @@ alias delpyc="sudo find . -name '*.pyc' -delete"
 alias mux='tmuxp'
 alias ku="kubectl"
 alias dc='docker compose'
+alias docker-compose='docker compose'
 alias kudown='kubectl get pods --all-namespaces | grep -v Running'
 alias ek="eksctl"
 alias release="git log --pretty=format:'* %s' --reverse \`git describe --tags --abbrev=0\`..HEAD"

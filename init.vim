@@ -1,5 +1,3 @@
-syntax enable
-set t_Co=256
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -11,7 +9,6 @@ endif
 if &compatible
   set nocompatible               " Be iMproved
 endif
-
 
 
 call plug#begin('~/.vim/plugged')
@@ -36,34 +33,24 @@ Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'hashivim/vim-terraform'
 Plug 'nvim-lualine/lualine.nvim'
-
 call plug#end()
 
 let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-css', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-pyright']
 
-set encoding=UTF-8
-
 set listchars=space:·,precedes:«,extends:»,eol:↲,tab:▸\
 set list
-
-" Required:
-filetype plugin indent on
 
 " Set Markdown Format for .md files
 au BufRead,BufNewFile *.md set filetype=markdown
 " Set HTML format for .template files
 au BufRead,BufNewFile *.template set filetype=html
 
-set backspace=indent,eol,start
 "Tab Settings"
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smartindent
-
-" History Settings
-set history=1000
 
 " Undo Settings
 set undofile
@@ -76,18 +63,12 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
-"Search Highlighting"
-set hlsearch
+" Search Highlighting
 set ignorecase
 set smartcase
 
-" search characters as they're entered
-set incsearch
-
 " Current line highlighting
 set cursorline
-
-
 
 "Color"
 let g:dracula_colorterm = 0
@@ -100,7 +81,6 @@ set wrap
 set formatoptions=qrn1
 set nu
 set relativenumber
-
 
 "Swap settings
 set backup
@@ -115,6 +95,7 @@ let g:terraform_fmt_on_save = 1
 let g:terraform_align = 1
 
 lua << END
+-- Treesitter Config
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = "maintained",
@@ -139,10 +120,7 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
-END
-
-
-lua << END
+--  NVIM tree Setup
 require'nvim-tree'.setup {
   disable_netrw        = true,
   hijack_netrw         = true,
@@ -211,12 +189,40 @@ require'nvim-tree'.setup {
     }
   }
 }
+-- Lualine Setup
+ require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'dracula',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {lualine_a = {'buffers'},lualine_z = {'tabs'}},
+  extensions = {}
+}
 END
 
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
-
 
 "Delte trailing white space
 autocmd BufWritePre * :%s/\s\+$//e
@@ -274,55 +280,11 @@ set synmaxcol=1000
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-
 endif
+
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-
-
-lua << END
- require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'dracula',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {},
-    always_divide_middle = true,
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {lualine_a = {'buffers'},lualine_z = {'tabs'}},
-  extensions = {}
-}
-END
-
-let g:lightline#bufferline#show_number = 2
-nmap <Leader>1 <Plug>lightline#bufferline#go(1)
-nmap <Leader>2 <Plug>lightline#bufferline#go(2)
-nmap <Leader>3 <Plug>lightline#bufferline#go(3)
-nmap <Leader>4 <Plug>lightline#bufferline#go(4)
-nmap <Leader>5 <Plug>lightline#bufferline#go(5)
-nmap <Leader>6 <Plug>lightline#bufferline#go(6)
-nmap <Leader>7 <Plug>lightline#bufferline#go(7)
-nmap <Leader>8 <Plug>lightline#bufferline#go(8)
-nmap <Leader>9 <Plug>lightline#bufferline#go(9)
-nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 " Bind FZF to ctrl + P
 "nmap <C-p> :FZF<CR>
@@ -332,7 +294,6 @@ nmap <Leader>` :Buffers<CR>
 " Bind \ + - to remove current buffer
 nmap <Leader>- :BD<CR>
 
-let g:lightline#bufferline#filename_modifier=":t"
  "Vim Multiline Bindings
 let g:VM_maps = {}
 let g:VM_default_mappings = 0
@@ -341,20 +302,11 @@ let g:VM_maps['Find Subword Under'] = '<C-d>'
 "let g:VM_maps["Select Cursor Down"] = '<M-C-Down>'
 "let g:VM_maps["Select Cursor Up"]   = '<M-C-Up>'
 
-
-
 " ES6 HTML Highlighting
 autocmd FileType javascript JsPreTmpl html
 
 " Json Format Command
-"command! -range=% Jsonformat %!python -m json.tool
-"command -range=% Jsonformat !python -m json.tool
 command! -range -nargs=0 -bar Jsonformat <line1>,<line2>!python -m json.tool
-
-if &term =~ '256color'
-    " disable Background Color Erase (BCE)
-    set t_ut=
-endif
 
 autocmd BufWritePre *.py :CocCommand python.sortImports
 autocmd BufWritePre *.py :call CocAction('format')
@@ -387,5 +339,3 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-

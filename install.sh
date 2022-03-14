@@ -3,17 +3,17 @@
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # vim
-ln -s ${BASEDIR}/.vimrc ~/.vimrc
-ln -s ${BASEDIR}/coc-settings.json ~/.vim/coc-settings.json
+ln -sfn ${BASEDIR}/.vimrc ~/.vimrc
+ln -sfn ${BASEDIR}/coc-settings.json ~/.vim/coc-settings.json
 # zsh
-ln -s ${BASEDIR}/.zshrc ~/.zshrc
+ln -sfn ${BASEDIR}/.zshrc ~/.zshrc
 
 # git
-ln -s ${BASEDIR}/.gitconfig ~/.gitconfig
+ln -sfn ${BASEDIR}/.gitconfig ~/.gitconfig
 
 # Tmux
-ln -s ${BASEDIR}/.tmuxp ~/.tmuxp
-ln -s ${BASEDIR}/.tmux.conf ~/.tmux.conf
+ln -sfn ${BASEDIR}/.tmuxp ~/.tmuxp
+ln -sfn ${BASEDIR}/.tmux.conf ~/.tmux.conf
 
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

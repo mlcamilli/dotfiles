@@ -7,6 +7,9 @@ ln -sfn ${BASEDIR}/.vimrc ~/.vimrc
 ln -sfn ${BASEDIR}/coc-settings.json ~/.vim/coc-settings.json
 # zsh
 ln -sfn ${BASEDIR}/.zshrc ~/.zshrc
+# nvim
+ln -sfn ${BASEDIR}/init.vim ~/.config/nvim/init.vim
+ln -sfn ${BASEDIR}/coc-settings.json ~/.config/nvim/coc-settings.json
 
 # git
 ln -sfn ${BASEDIR}/.gitconfig ~/.gitconfig

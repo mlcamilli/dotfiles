@@ -50,8 +50,9 @@
   ],
   "python.sortImports.path": "/home/boos3y/.local/bin/isort",
   "python.sortImports.args": ["--profile=black"],
+  "pyright.organizeimports.provider": "isort",
   "coc.preferences.formatOnSaveFiletypes": [
-    //   "python", This has a terrible race condition with isort
+    "python",
     "json",
     "javascript",
     "typescript"

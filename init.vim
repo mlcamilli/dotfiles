@@ -35,7 +35,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'nvim-lualine/lualine.nvim'
 call plug#end()
 
-let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-css', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-pyright']
+let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-css', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-pyright', 'coc-tailwindcss']
 
 set listchars=space:·,precedes:«,extends:»,eol:↲,tab:▸\
 set list
@@ -98,7 +98,7 @@ lua << END
 -- Treesitter Config
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "maintained",
+  ensure_installed = "all",
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -117,7 +117,7 @@ require'nvim-treesitter.configs'.setup {
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
 }
 --  NVIM tree Setup
@@ -308,8 +308,8 @@ autocmd FileType javascript JsPreTmpl html
 " Json Format Command
 command! -range -nargs=0 -bar Jsonformat <line1>,<line2>!python -m json.tool
 
-autocmd BufWritePre *.py :CocCommand python.sortImports
-autocmd BufWritePre *.py :call CocAction('format')
+"autocmd BufWritePre *.py :call CocAction('format')
+"autocmd BufWritePre *.py :CocCommand python.sortImports
 " Make tab autocomplete
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
 
@@ -339,3 +339,4 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd BufRead,BufEnter *.astro set filetype=astro

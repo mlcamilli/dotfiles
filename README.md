@@ -27,3 +27,6 @@ sudo ln -s ~/dev/dotfiles/.vimrc ~/.vimrc
 sudo ln -s ~/dev/dotfiles/.agignore ~/.agignore
 ```
 
+
+Install tmux plugins
+`<Ctrl-Space> + I`

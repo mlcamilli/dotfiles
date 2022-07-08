@@ -27,6 +27,10 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/dracula/zsh.git
+mv zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
+mv zsh/lib/ ~/.oh-my-zsh/themes/lib
+rm -rf zsh
 asdf plugin add nodejs
 asdf plugin add python
 bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'

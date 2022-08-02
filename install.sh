@@ -2,9 +2,6 @@
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# vim
-ln -sfn ${BASEDIR}/.vimrc ~/.vimrc
-ln -sfn ${BASEDIR}/coc-settings.json ~/.vim/coc-settings.json
 # zsh
 ln -sfn ${BASEDIR}/.zshrc ~/.zshrc
 # nvim
@@ -18,15 +15,25 @@ ln -sfn ${BASEDIR}/.gitconfig ~/.gitconfig
 ln -sfn ${BASEDIR}/.tmuxp ~/.tmuxp
 ln -sfn ${BASEDIR}/.tmux.conf ~/.tmux.conf
 
+# Install Tmux
+curl -sLo ~/tmux.tar.gz https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz
+tar -zxf ~/tmux.tar.gz
+cd ~/tmux
+sh configure
+make && sudo make install
+
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 asdf plugin add nodejs
+asdf plugin add python
 bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
-asdf install nodejs 14.5.0
-asdf global nodejs 14.5.0
+asdf install nodejs 16.13.0
+asdf global nodejs 16.13.0
+asdf install python 3.10.5
+asdf global python 3.10.5
 python3 -m pip install --user pipx
 python3 -m pipx ensurepath
 pipx install tmuxp black isort flake8

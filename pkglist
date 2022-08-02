@@ -1,8 +1,7 @@
 git
 htop
 ncdu
-tmux
 silversearcher-ag
 zsh
-python3-venv
-python3-pip
+libevent-dev
+ncurses-dev

@@ -22,8 +22,6 @@ Plug 'flazz/vim-colorschemes'
 Plug 'mg979/vim-visual-multi'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'qpkorr/vim-bufkill'
@@ -33,6 +31,9 @@ Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'hashivim/vim-terraform'
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 call plug#end()
 
 let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-css', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-pyright', 'coc-tailwindcss']
@@ -95,6 +96,37 @@ let g:terraform_fmt_on_save = 1
 let g:terraform_align = 1
 
 lua << END
+-- Telescope setup
+require('telescope').setup {
+    defaults = {
+        file_ignore_patterns = {
+            ".git",
+            "node_modules",
+            "__pycache__",
+            "coverage",
+            ".mypy_cache"
+        },
+    },
+    pickers = {
+        find_files = {
+            hidden=true,
+            theme = "dropdown",
+            prompt_prefix="🔍",
+        }
+    },
+    extensions = {
+        fzf = {
+            fuzzy = true,                    -- false will only do exact matching
+            override_generic_sorter = true,  -- override the generic sorter
+            override_file_sorter = true,     -- override the file sorter
+            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                   -- the default case_mode is "smart_case"
+        }
+    }
+}
+-- To get fzf loaded and working with telescope, you need to call
+-- load_extension, somewhere after setup function:
+require('telescope').load_extension('fzf')
 -- Treesitter Config
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -126,15 +158,10 @@ require'nvim-tree'.setup {
   hijack_netrw         = true,
   open_on_setup        = false,
   ignore_ft_on_setup   = {},
-  auto_close           = false,
   auto_reload_on_write = true,
   open_on_tab          = false,
   hijack_cursor        = false,
   update_cwd           = false,
-  update_to_buf_dir    = {
-    enable = true,
-    auto_open = true,
-  },
   diagnostics = {
     enable = false,
     icons = {
@@ -167,7 +194,6 @@ require'nvim-tree'.setup {
     height = 30,
     hide_root_folder = false,
     side = 'left',
-    auto_resize = false,
     mappings = {
       custom_only = false,
       list = {}
@@ -219,6 +245,8 @@ require'nvim-tree'.setup {
   extensions = {}
 }
 END
+
+
 
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
@@ -277,18 +305,20 @@ nnoremap ; :
 set synmaxcol=1000
 
 "" The Silver Searcher
-if executable('ag')
+if executable('rg')
   " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=rg
 endif
 
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
-" Bind FZF to ctrl + P
-"nmap <C-p> :FZF<CR>
-nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+" Telescope Bindings
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <C-f> <cmd>Telescope live_grep<cr>
+nnoremap <C-b> <cmd>Telescope buffers<cr>
+"nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
 " Bind \ + ` to search open buffers
 nmap <Leader>` :Buffers<CR>
 " Bind \ + - to remove current buffer
@@ -311,7 +341,7 @@ command! -range -nargs=0 -bar Jsonformat <line1>,<line2>!python -m json.tool
 "autocmd BufWritePre *.py :call CocAction('format')
 "autocmd BufWritePre *.py :CocCommand python.sortImports
 " Make tab autocomplete
-inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
+" inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.

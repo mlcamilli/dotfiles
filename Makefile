@@ -31,6 +31,8 @@ install:
 	sh -c 'curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 	chmod +x nvim.appimage
+	curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+    sudo dpkg -i ripgrep_13.0.0_amd64.deb
 
 make asdf:
 	asdf plugin add nodejs

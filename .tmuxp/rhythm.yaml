@@ -7,7 +7,7 @@ windows:
   - focus: true
     shell_command:
     - cd /home/boos3y/dev/rhythm-app
-    - vim
+    - nvim
   - shell_command:
     - cd /home/boos3y/dev/rhythm-app
   - shell_command:

@@ -77,3 +77,6 @@ end
 
 
 g.coc_global_extensions = {'coc-json', 'coc-yaml', 'coc-css', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-pyright', 'coc-tailwindcss'}
+local cocloc = home_dir..'/.config/nvim/lua/plugins/coc.vim'
+vim.cmd(string.format([[source %s]], cocloc))
+

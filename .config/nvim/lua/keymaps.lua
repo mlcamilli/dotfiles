@@ -42,20 +42,3 @@ map('n', ';', ':', options)
 map('n', '<C-p>', '<cmd>Telescope find_files<cr>', options)
 map('n', '<C-f>', '<cmd>Telescope live_grep<cr>', options)
 map('n', '<C-b>', '<cmd>Telescope buffers<cr>', options)
-
--- Make tab autocomplete
--- map('i', '<expr> <TAB>', 'pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"', options)
-
--- Use `[g` and `]g` to navigate diagnostics
--- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-map('n', '<silent> [g', '<Plug>(coc-diagnostic-prev)', {})
-map('n', '<silent> ]g', '<Plug>(coc-diagnostic-next)', {})
-
--- GoTo code navigation.
-map('n', '<silent> gd', '<Plug>(coc-definition)', {})
-map('n', '<silent> gy', '<Plug>(coc-type-definition)', {})
-map('n', '<silent> gi', '<Plug>(coc-implementation)', {})
-map('n', '<silent> gr', '<Plug>(coc-references)', {})
-
--- Use K to show documentation in preview window.
--- map('n', '<silent> <c-K>', ':call <SID>show_documentation()<CR>', options)

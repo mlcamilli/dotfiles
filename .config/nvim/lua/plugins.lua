@@ -23,7 +23,6 @@ return require('packer').startup(function(use)
         config = function() require('plugins.nvim-tree') end
     }
     use {'dracula/vim', as = 'dracula' }
-    use 'scrooloose/nerdcommenter'
     use 'flazz/vim-colorschemes'
     use 'ConradIrwin/vim-bracketed-paste'
     use {
@@ -33,6 +32,7 @@ return require('packer').startup(function(use)
     }
     use 'ryanoasis/vim-devicons'
     use 'tpope/vim-surround'
+    use 'b3nj5m1n/kommentary'
     use {'neoclide/coc.nvim', branch = 'release'}
     use 'hashivim/vim-terraform'
     use {

@@ -7,4 +7,4 @@ require('gitsigns').setup {
         ignore_whitespace = true,
     },
 }
-vim.cmd([[highlight link GitSignsCurrentLineBlame Visual]])
+vim.cmd([[highlight link GitSignsCurrentLineBlame Comment]])

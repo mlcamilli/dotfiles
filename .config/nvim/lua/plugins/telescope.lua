@@ -1,4 +1,4 @@
-let telescope = require("telescope")
+local telescope = require("telescope")
 
 telescope.setup {
     defaults = {

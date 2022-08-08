@@ -33,24 +33,25 @@ opt.termguicolors = true
 
 ---LineWrap---
 opt.wrap = true
-opt.formatoptions=qrn1
+opt.formatoptions='qrn1'
 opt.nu = true
 opt.relativenumber = true
 
 ---Swap settings
 opt.backup = true
-opt.noswapfile = true
+-- opt.noswapfile = true
 
-opt.undodir='~/.local/share/nvim/tmp/undo/'
-opt.backupdir='~/.local/share/nvim/tmp/backup/'
-opt.directory='~/.local/share/nvim/tmp/swap/'
+local home_dir = os.getenv('HOME')
+opt.undodir=home_dir..'/.local/share/nvim/tmp/undo/'
+opt.backupdir=home_dir..'/.local/share/nvim/tmp/backup/'
+opt.directory=home_dir..'/.local/share/nvim/tmp/swap/'
 
 ---Terraform Settings
 g['terraform_fmt_on_save'] = 1
 g['terraform_align'] = 1
 
 ---Ctrl - P Settings
-opt.wildignore += '*/tmp/*,*.so,*.swp,*.zip,*.pyc,/node_modules/*'
+cmd 'set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,/node_modules/*'
 
 
 --- Copy/Paste
@@ -69,16 +70,10 @@ vnoremap <leader>P ---+P
 --- Only color up to the first 512 characters
 opt.synmaxcol=1000
 
-if executable('rg')
+if vim.fn.executable('rg')
+then
   opt.grepprg=rg
-endif
+end
 
 
-g['coc_global_extensions'] = ['coc-json', 'coc-yaml', 'coc-css', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-pyright', 'coc-tailwindcss']
-
- ---Vim Multiline Bindings
-g['VM_maps'] = {}
-g['VM_default_mappings'] = 0
-g['VM_maps['Find'] Under']         = '<C-d>'
-g['VM_maps['Find'] Subword Under'] = '<C-d>'
-
+g.coc_global_extensions = {'coc-json', 'coc-yaml', 'coc-css', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-pyright', 'coc-tailwindcss'}

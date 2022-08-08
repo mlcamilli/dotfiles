@@ -1,8 +1,8 @@
 local map = vim.api.nvim_set_keymap
 
 -- Visually wrap long lines
-noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+-- noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+-- noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 -- Better pane management
 map('n', '<C-h>', '<C-w>h', {})
@@ -44,7 +44,7 @@ map('n', '<C-f>', '<cmd>Telescope live_grep<cr>', options)
 map('n', '<C-b>', '<cmd>Telescope buffers<cr>', options)
 
 -- Make tab autocomplete
-map('i', '<expr> <TAB>', 'pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"', options)
+-- map('i', '<expr> <TAB>', 'pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"', options)
 
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -58,4 +58,4 @@ map('n', '<silent> gi', '<Plug>(coc-implementation)', {})
 map('n', '<silent> gr', '<Plug>(coc-references)', {})
 
 -- Use K to show documentation in preview window.
-map('n', '<silent> <c-K>', ':call <SID>show_documentation()<CR>', options)
+-- map('n', '<silent> <c-K>', ':call <SID>show_documentation()<CR>', options)

@@ -1,6 +1,6 @@
+require 'plugins'
 require 'autocmd'
 require 'filetype'
 -- require 'functions'
 require 'keymaps'
 require 'options'
-require 'plugins'

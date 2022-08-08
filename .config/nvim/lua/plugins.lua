@@ -8,33 +8,52 @@ if fn.empty(fn.glob(install_path)) > 0 then
   cmd [[packadd packer.nvim]]
 end
 
-return require('packer').startup(function(use)
-    use 'kyazdani42/nvim-web-devicons'
-    use 'kyazdani42/nvim-tree.lua'
-    use {'dracula/vim', as = 'dracula' }
-    use 'scrooloose/nerdcommenter'
-    use 'tpope/vim-surround'
-    use 'flazz/vim-colorschemes'
-    use 'ConradIrwin/vim-bracketed-paste'
-    use 'airblade/vim-gitgutter'
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-    use 'ryanoasis/vim-devicons'
-    use 'tpope/vim-surround'
-    use {'neoclide/coc.nvim', branch = 'release'}
-    use 'hashivim/vim-terraform'
-    use 'nvim-lualine/lualine.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use {'lewis6991/gitsigns.nvim', tag = 'release'}
-    use {'nvim-telescope/telescope.nvim', tag = '0.1.0' }
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    if packer_bootstrap then
-        require('packer').sync()
-    end
-end)
-
 cmd([[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
   augroup end
 ]])
+
+return require('packer').startup(function(use)
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {'kyazdani42/nvim-web-devicons', },
+        tag = 'nightly',
+        config = function() require('plugins.nvim-tree') end
+    }
+    use {'dracula/vim', as = 'dracula' }
+    use 'scrooloose/nerdcommenter'
+    use 'flazz/vim-colorschemes'
+    use 'ConradIrwin/vim-bracketed-paste'
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+        config = function() require('plugins.nvim-treesitter') end
+    }
+    use 'ryanoasis/vim-devicons'
+    use 'tpope/vim-surround'
+    use {'neoclide/coc.nvim', branch = 'release'}
+    use 'hashivim/vim-terraform'
+    use {
+        'nvim-lualine/lualine.nvim',
+        config = function() require('plugins.lualine') end
+    }
+    use {
+        'lewis6991/gitsigns.nvim',
+        tag = 'release',
+        requires = {'nvim-lua/plenary.nvim'},
+        config = function() require('plugins.gitsigns') end
+    }
+    use {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.0',
+        config = function() require('plugins.telescope') end
+    }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    if packer_bootstrap then
+        require('packer').sync()
+    end
+end)
+
+

@@ -37,10 +37,11 @@ map('n', '<F6>', ':set paste!<cr>', options)
 
 -- Semi colon to colon
 map('n', ';', ':', options)
-
 -- Telescope Bindings
 map('n', '<C-p>', '<cmd>Telescope find_files<cr>', options)
 map('n', '<C-f>', '<cmd>Telescope live_grep<cr>', options)
 map('n', '<C-b>', '<cmd>Telescope buffers<cr>', options)
-map("n", "<CR>", "<Plug>kommentary_line_default", {})
-map("x", "<CR>", "<Plug>kommentary_visual_default<C-c>", {})
+-- Comment Bindings
+
+map('n', '<CR>', '<Plug>(comment_toggle_linewise_current)', {})
+map('x', '<CR>', '<Plug>(comment_toggle_linewise_visual)', {})

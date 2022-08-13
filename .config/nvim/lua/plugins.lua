@@ -31,8 +31,15 @@ return require('packer').startup(function(use)
         config = function() require('plugins.nvim-treesitter') end
     }
     use 'ryanoasis/vim-devicons'
-    use 'tpope/vim-surround'
-    use 'b3nj5m1n/kommentary'
+    use({
+        "kylechui/nvim-surround",
+        config = function() require("nvim-surround").setup({}) end
+    })
+    use {
+        'numToStr/Comment.nvim',
+        config = function() require('Comment').setup() end
+    }
+
     use {'neoclide/coc.nvim', branch = 'release'}
     use 'hashivim/vim-terraform'
     use {

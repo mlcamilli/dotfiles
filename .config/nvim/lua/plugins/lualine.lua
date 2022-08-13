@@ -2,6 +2,7 @@ require('lualine').setup({
   options = {
     icons_enabled = true,
     theme = 'dracula',
+    globalstatus = true,
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {},
@@ -24,5 +25,5 @@ require('lualine').setup({
     lualine_z = {}
   },
   tabline = {lualine_a = {'buffers'},lualine_z = {'tabs'}},
-  extensions = {}
+  extensions = {},
 })

@@ -5,6 +5,7 @@ BASEDIR := "$(CURDIR)"
 test:
 	echo $(BASEDIR)
 
+install: apt
 
 
 link:
@@ -24,16 +25,25 @@ tmux:
 	curl -sLo ~/tmux.tar.gz https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz
 	tar -zxf ~/tmux.tar.gz
 	cd ~/tmux; sh configure; make && sudo make install
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+zsh:
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	sh -c 'curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+
+nvim:
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 	chmod +x nvim.appimage
-	curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
-    sudo dpkg -i ripgrep_13.0.0_amd64.deb
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
+
+ripgrep:
+	curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+    sudo dpkg -i ripgrep_13.0.0_amd64.deb
+
+packages:
+	sudo apt install $(cat pkglist)
 
 
 asdf:

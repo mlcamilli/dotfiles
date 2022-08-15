@@ -14,7 +14,7 @@ opt.expandtab = true
 opt.smartindent = true
 
 --- Undo Settings
-opt.undofile = true
+cmd('set undofile')
 opt.undolevels=1000
 opt.undoreload=10000
 

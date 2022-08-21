@@ -23,8 +23,7 @@ return require('packer').startup(function(use)
         config = function() require('plugins.nvim-tree') end
     }
     use {'dracula/vim', as = 'dracula' }
-    use 'flazz/vim-colorschemes'
-    use 'ConradIrwin/vim-bracketed-paste'
+    use 'flazz/vim-colorschemes' use 'ConradIrwin/vim-bracketed-paste'
     use {
         'nvim-treesitter/nvim-treesitter',
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
@@ -39,9 +38,20 @@ return require('packer').startup(function(use)
         'numToStr/Comment.nvim',
         config = function() require('Comment').setup() end
     }
-
-    use {'neoclide/coc.nvim', branch = 'release'}
-    use 'hashivim/vim-terraform'
+    use "williamboman/mason.nvim"
+    use 'williamboman/mason-lspconfig.nvim'
+    use 'neovim/nvim-lspconfig'
+    use 'jose-elias-alvarez/null-ls.nvim'
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            'hrsh7th/cmp-nvim-lsp-signature-help'
+        }
+    }
     use {
         'nvim-lualine/lualine.nvim',
         config = function() require('plugins.lualine') end
@@ -62,5 +72,3 @@ return require('packer').startup(function(use)
         require('packer').sync()
     end
 end)
-
-

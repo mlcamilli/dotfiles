@@ -10,9 +10,8 @@ map('n', '<C-j>', '<C-w>j', {})
 map('n', '<C-k>', '<C-w>k', {})
 map('n', '<C-l>', '<C-w>l', {})
 
--- map <C-m> <plug>NERDCommenterInvert
+local options = { noremap = true }
 
-options = { noremap = true }
 -- More sane line movement
 map('', 'J', 'G', options)
 map('', 'K', '1G', options)
@@ -24,24 +23,22 @@ map('n', 'D', 'd$', options)
 -- Set jj to esc
 map('i', 'jj', '<Esc>', {})
 
+-- NVIM Tree
 map('n', '<C-n>', ':NvimTreeToggle<CR>', options)
 map('n', '<leader>r', ':NvimTreeRefresh<CR>', options)
 map('n', '<leader>n', ':NvimTreeFindFile<CR>', options)
-
--- Spellcheck toggle
--- map <F5> :setlocal spell! spelllang=en_us<CR>
--- nmap <F7> :set rnu! nu!<CR>
 
 -- Paste mode
 map('n', '<F6>', ':set paste!<cr>', options)
 
 -- Semi colon to colon
 map('n', ';', ':', options)
+
 -- Telescope Bindings
 map('n', '<C-p>', '<cmd>Telescope find_files<cr>', options)
 map('n', '<C-f>', '<cmd>Telescope live_grep<cr>', options)
 map('n', '<C-b>', '<cmd>Telescope buffers<cr>', options)
--- Comment Bindings
 
+-- Comment Bindings
 map('n', '<CR>', '<Plug>(comment_toggle_linewise_current)', {})
 map('x', '<CR>', '<Plug>(comment_toggle_linewise_visual)', {})

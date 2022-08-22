@@ -4,8 +4,12 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
     debug = true,
     sources = {
-        null_ls.builtins.formatting.isort,
-        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.isort.with({
+            extra_args = {'--profile=black'}
+        }),
+        null_ls.builtins.formatting.black.with({
+            extra_args = {'--line-length', '120'}
+        }),
     },
    on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then

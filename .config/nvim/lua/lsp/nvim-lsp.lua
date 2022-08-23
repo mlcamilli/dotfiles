@@ -70,6 +70,7 @@ local servers = {
     pyright = {
         on_init = function(client)
             local path = vim.fn.getcwd()
+            -- Project specific overrides can go here, % to escape any characters
             if string.find(path, 'rhythm%-app') then
                 client.config.settings.python.analysis.diagnosticSeverityOverrides = {reportMissingImports = "none"}
                 client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })

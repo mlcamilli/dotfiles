@@ -68,6 +68,10 @@ return require('packer').startup(function(use)
         config = function() require('plugins.telescope') end
     }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
     if packer_bootstrap then
         require('packer').sync()
     end

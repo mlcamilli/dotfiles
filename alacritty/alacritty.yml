@@ -14,11 +14,14 @@ font:
     family: Hack NFM
     style: Bold Italic
 
+window:
+  opacity: 0.99
+  dynamic_padding: true
+  title: Terminal
+  # Allow terminal applications to change Alacritty's window title.
+  dynamic_title: true
 
-window.opacity: 0.7
-window.dynamic_padding: true
 live_config_reload: true
-
 cursor:
   style:
     shape: Block
@@ -31,4 +34,4 @@ key_bindings:
 
 
 import:
-  - dracula.yml
+  - C:\Users\<YourUser>\AppData\Roaming\alacritty\dracula.yml

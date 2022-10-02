@@ -63,7 +63,7 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export TERM=xterm-256color
-export EDITOR=vim
+export EDITOR=nvim
 export SHELL zsh
 
 setopt no_share_history

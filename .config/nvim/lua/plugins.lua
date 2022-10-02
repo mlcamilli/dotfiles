@@ -29,7 +29,6 @@ return require('packer').startup(function(use)
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
         config = function() require('plugins.nvim-treesitter') end
     }
-    use {'p00f/nvim-ts-rainbow', after = 'nvim-treesitter'}
     use 'ryanoasis/vim-devicons'
     use({
         "kylechui/nvim-surround",
@@ -59,7 +58,7 @@ return require('packer').startup(function(use)
     }
     use {
         'lewis6991/gitsigns.nvim',
-        tag = 'release',
+        tag = 'main',
         requires = {'nvim-lua/plenary.nvim'},
         config = function() require('plugins.gitsigns') end
     }

@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 
-BASEDIR := "$(CURDIR)"
+BASEDIR := $(CURDIR)
 
 install: packages tmux zsh nvim ripgrep asdf pipx link
 
@@ -9,8 +9,7 @@ link:
 	# zsh
 	ln -sfn ${BASEDIR}/.zshrc ~/.zshrc
 	# nvim
-	ln -sfn ${BASEDIR}/init.vim ~/.config/nvim/init.vim
-	ln -sfn ${BASEDIR}/coc-settings.json ~/.config/nvim/coc-settings.json
+	ln -sfn ${BASEDIR}/.config/nvim/ ~/.config/nvim
 	# git
 	ln -sfn ${BASEDIR}/.gitconfig ~/.gitconfig
 	# Tmux
@@ -20,9 +19,9 @@ link:
 # Install Tmux
 tmux:
 	curl -sLo ~/tmux.tar.gz https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz
-	tar -zxf ~/tmux.tar.gz
-	cd ~/tmux; sh configure; make && sudo make install
-	rm -rf tmux; rm tmux.tar.gz
+	tar -zxf ~/tmux.tar.gz -C ~/
+	cd ~/tmux-3.3a; sh configure; make && sudo make install
+	rm -rf ~/tmux-3.3a; rm ~/tmux.tar.gz
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 zsh:
@@ -33,17 +32,18 @@ zsh:
 nvim:
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 	chmod +x nvim.appimage
+	sudo rm /usr/bin/nvim
 	sudo mv nvim.appimage /usr/bin/nvim
-	git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+	git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 
 ripgrep:
 	curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
-    sudo dpkg -i ripgrep_13.0.0_amd64.deb
+	sudo dpkg -i ripgrep_13.0.0_amd64.deb
 	rm ripgrep_13.0.0_amd64.deb
 
 packages:
-	sudo apt install $(cat pkglist)
+	sudo apt install $(shell cat pkglist)
 
 
 asdf:

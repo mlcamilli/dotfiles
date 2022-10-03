@@ -1,0 +1,37 @@
+shell:
+  program: C:\WINDOWS\system32\wsl.exe ~ -d Ubuntu-20.04
+font:
+  normal:
+    family: Hack NFM
+    style: Regular
+  bold:
+    family: Hack NFM
+    style: Bold
+  italic:
+    family: Hack NFM
+    style: Italic
+  bold_italic:
+    family: Hack NFM
+    style: Bold Italic
+
+window:
+  opacity: 0.99
+  dynamic_padding: true
+  title: Terminal
+  # Allow terminal applications to change Alacritty's window title.
+  dynamic_title: true
+
+live_config_reload: true
+cursor:
+  style:
+    shape: Block
+    blinking: On
+
+  unfocused_hollow: false
+
+key_bindings:
+    - { key: Space, mods: Control, chars: "\x00" }
+
+
+import:
+  - C:\Users\<YourUser>\AppData\Roaming\alacritty\dracula.yml

@@ -4,7 +4,6 @@ BASEDIR := $(CURDIR)
 
 install: packages tmux zsh nvim ripgrep asdf pipx link
 
-
 link:
 	# zsh
 	ln -sfn ${BASEDIR}/.zshrc ~/.zshrc
@@ -28,14 +27,12 @@ zsh:
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-
 nvim:
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 	chmod +x nvim.appimage
 	sudo rm /usr/bin/nvim
 	sudo mv nvim.appimage /usr/bin/nvim
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
 
 ripgrep:
 	curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
@@ -44,7 +41,6 @@ ripgrep:
 
 packages:
 	sudo apt install $(shell cat pkglist)
-
 
 asdf:
 	git clone https://github.com/asdf-vm/asdf.git ~/.asdf

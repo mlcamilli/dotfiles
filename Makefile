@@ -34,6 +34,7 @@ nvim:
 	chmod +x nvim.appimage
 	sudo rm /usr/bin/nvim
 	sudo mv nvim.appimage /usr/bin/nvim
+	rm -rf ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 

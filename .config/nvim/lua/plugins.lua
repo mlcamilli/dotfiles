@@ -36,7 +36,7 @@ require("lazy").setup({
     'ConradIrwin/vim-bracketed-paste',
     {
         'nvim-treesitter/nvim-treesitter',
-        run = function() require('nvim-treesitter.install').update(
+        build = function() require('nvim-treesitter.install').update(
             { with_sync = true , prefer_git = true})
         end,
         config = function() require('plugins.nvim-treesitter') end
@@ -82,6 +82,6 @@ require("lazy").setup({
     },
     {
         "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
+        build = function() vim.fn["mkdp#util#install"]() end,
     }
 })

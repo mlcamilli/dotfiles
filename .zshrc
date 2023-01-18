@@ -139,3 +139,4 @@ if [ -z "$RUNNING" ]; then
     sudo dockerd > /dev/null 2>&1 &
     disown
 fi
+unsetopt PROMPT_SP

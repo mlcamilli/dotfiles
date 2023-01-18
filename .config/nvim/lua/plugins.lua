@@ -26,7 +26,9 @@ return require('packer').startup(function(use)
     use 'flazz/vim-colorschemes' use 'ConradIrwin/vim-bracketed-paste'
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+        run = function() require('nvim-treesitter.install').update(
+            { with_sync = true , prefer_git = true})
+        end,
         config = function() require('plugins.nvim-treesitter') end
     }
     use 'ryanoasis/vim-devicons'

@@ -14,4 +14,6 @@ cmd([[
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.template set filetype=html
 au BufRead,BufNewFile *.astro set filetype=astro
+au BufRead,BufNewFile *.yml set filetype=yaml
+au BufRead,BufNewFile *.yml* set filetype=yaml
 ]])

@@ -48,11 +48,13 @@ require("lazy").setup(
         'ryanoasis/vim-devicons',
         {
             "kylechui/nvim-surround",
-            config = function() require("nvim-surround").setup({}) end
+            config = function() require("nvim-surround").setup({}) end,
+            event = "VeryLazy",
         },
         {
             'numToStr/Comment.nvim',
-            config = function() require('Comment').setup() end
+            config = function() require('Comment').setup() end,
+            event = "VeryLazy",
         },
         "williamboman/mason.nvim",
         'williamboman/mason-lspconfig.nvim',
@@ -70,13 +72,15 @@ require("lazy").setup(
         },
         {
             'nvim-lualine/lualine.nvim',
-            config = function() require('plugins.lualine') end
+            config = function() require('plugins.lualine') end,
+            event = "VeryLazy",
         },
         {
             'lewis6991/gitsigns.nvim',
             branch = 'main',
             dependencies = {'nvim-lua/plenary.nvim'},
-            config = function() require('plugins.gitsigns') end
+            config = function() require('plugins.gitsigns') end,
+            event = "VeryLazy",
         },
         {
             'nvim-telescope/telescope.nvim',
@@ -85,8 +89,9 @@ require("lazy").setup(
             config = function() require('plugins.telescope') end
         },
         {
-            "iamcco/markdown-preview.nvim",
-            build = function() vim.fn["mkdp#util#install"]() end,
+          "iamcco/markdown-preview.nvim",
+          build = function() vim.fn["mkdp#util#install"]() end,
+          event = "VeryLazy",
         },
         {
           "akinsho/bufferline.nvim",
@@ -96,11 +101,13 @@ require("lazy").setup(
         },
         {
           "folke/trouble.nvim",
+          event = "VeryLazy",
           dependencies = "nvim-tree/nvim-web-devicons",
           config = function() require("trouble").setup() end
         },
         {
           "folke/todo-comments.nvim",
+          event = "VeryLazy",
           requires = "nvim-lua/plenary.nvim",
           config = function() require("todo-comments").setup() end
         }

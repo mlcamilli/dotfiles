@@ -2,13 +2,6 @@ local g = vim.g -- global variables
 local opt = vim.opt -- global/buffer/windows-scoped options
 local cmd = vim.cmd
 
----Color---
-cmd('colorscheme dracula')
-opt.bg = "dark"
-opt.termguicolors = true
-
-
-
 opt.listchars=[[space:·,precedes:«,extends:»,eol:↲,tab:▸\]]
 opt.list = true
 
@@ -58,10 +51,3 @@ then
   opt.grepprg="rg"
 end
 cmd('set clipboard=unnamedplus')
--- vnoremap  <leader>y  "+y
--- nnoremap  <leader>Y  "+yg_
--- nnoremap  <leader>y  "+y
--- nnoremap <leader>p "+p
--- nnoremap <leader>P "+P
--- vnoremap <leader>p "+p
--- vnoremap <leader>P "+P

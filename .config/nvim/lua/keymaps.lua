@@ -20,6 +20,9 @@ map('', 'L', '$', options)
 map('v', 'L', 'g_', options)
 map('n', 'D', 'd$', options)
 
+map("n", "<A-h>", ":BufferLineCyclePrev<CR>", options)
+map("n", "<A-l>", ":BufferLineCycleNext<CR>", options)
+
 -- Set jj to esc
 map('i', 'jj', '<Esc>', {})
 

@@ -93,8 +93,18 @@ require("lazy").setup(
           event = "VeryLazy",
           dependencies = {'nvim-tree/nvim-web-devicons'},
           config = function() require('plugins.bufferline') end,
+        },
+        {
+          "folke/trouble.nvim",
+          dependencies = "nvim-tree/nvim-web-devicons",
+          config = function() require("trouble").setup() end
+        },
+        {
+          "folke/todo-comments.nvim",
+          requires = "nvim-lua/plenary.nvim",
+          config = function() require("todo-comments").setup() end
         }
-                },
+    },
     {
         install = {
             -- install missing plugins on startup. This doesn't increase startup time.

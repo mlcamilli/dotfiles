@@ -11,6 +11,7 @@ map('n', '<C-k>', '<C-w>k', {})
 map('n', '<C-l>', '<C-w>l', {})
 
 local options = { noremap = true }
+local silent_options = { noremap = true, silent = true}
 
 -- More sane line movement
 map('', 'J', 'G', options)
@@ -20,8 +21,10 @@ map('', 'L', '$', options)
 map('v', 'L', 'g_', options)
 map('n', 'D', 'd$', options)
 
-map("n", "<A-h>", ":BufferLineCyclePrev<CR>", options)
-map("n", "<A-l>", ":BufferLineCycleNext<CR>", options)
+
+
+map("n", "<A-h>", ":BufferLineCyclePrev<CR>", silent_options)
+map("n", "<A-l>", ":BufferLineCycleNext<CR>", silent_options)
 
 -- Set jj to esc
 map('i', 'jj', '<Esc>', {})

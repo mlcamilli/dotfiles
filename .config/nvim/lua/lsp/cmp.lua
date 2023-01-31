@@ -1,5 +1,6 @@
 local cmp = require('cmp')
 local icons = _G.icons
+local luasnip = require("luasnip")
 
 cmp.setup({
     debug = false,
@@ -12,7 +13,11 @@ cmp.setup({
     window = {
         documentation = true,
     },
-
+    snippet = {
+      expand = function(args)
+        luasnip.lsp_expand(args.body) -- For `luasnip` users.
+      end,
+    },
     completion = {
         keyword_length = 1,
     },
@@ -57,6 +62,7 @@ cmp.setup({
                 end,
             },
         },
+        { name = 'luasnip' },
         { name = 'path' },
     },
 

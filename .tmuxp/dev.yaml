@@ -7,5 +7,5 @@ windows:
   - focus: true
     shell_command:
     - nvim
-  - shell_command:
+  - pane
   window_name: dev

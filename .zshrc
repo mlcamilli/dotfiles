@@ -62,7 +62,7 @@ source $ZSH/oh-my-zsh.sh
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-export TERM=xterm-256color
+# export TERM=xterm-256color
 export EDITOR=nvim
 export SHELL zsh
 
@@ -139,3 +139,4 @@ if [ -z "$RUNNING" ]; then
     sudo dockerd > /dev/null 2>&1 &
     disown
 fi
+unsetopt PROMPT_SP

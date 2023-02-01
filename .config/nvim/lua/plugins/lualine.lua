@@ -24,6 +24,6 @@ require('lualine').setup({
     lualine_y = {},
     lualine_z = {}
   },
-  tabline = {lualine_a = {'buffers'},lualine_z = {'tabs'}},
+  -- tabline = {lualine_a = {'buffers'},lualine_z = {'tabs'}},
   extensions = {},
 })

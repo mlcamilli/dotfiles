@@ -22,6 +22,8 @@ require("lazy").setup(
         {
             'dracula/vim',
             name='dracula',
+            lazy=false,
+            priority=1000,
             config = function()
                 opt.bg = "dark"
                 opt.termguicolors = true
@@ -110,7 +112,7 @@ require("lazy").setup(
         {
           "folke/todo-comments.nvim",
           event = "VeryLazy",
-          requires = "nvim-lua/plenary.nvim",
+          dependencies = "nvim-lua/plenary.nvim",
           config = function() require("todo-comments").setup() end
         }
     },

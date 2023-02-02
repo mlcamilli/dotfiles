@@ -11,7 +11,7 @@ cmp.setup({
     max_kind_width = 100,
     max_menu_width = 100,
     window = {
-        documentation = true,
+        documentation = cmp.config.window.bordered(),
     },
     snippet = {
       expand = function(args)

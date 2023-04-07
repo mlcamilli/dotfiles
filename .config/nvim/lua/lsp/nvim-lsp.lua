@@ -55,7 +55,7 @@ local servers = {
     },
     tsserver = {},
     rust_analyzer = {},
-    sumneko_lua =  {
+    lua_ls =  {
         settings = {
             Lua = {
                 diagnostics = {

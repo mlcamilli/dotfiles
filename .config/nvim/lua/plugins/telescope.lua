@@ -14,7 +14,13 @@ telescope.setup {
         find_files = {
             hidden=true,
             theme = "dropdown",
-        }
+        },
+
+        live_grep = {
+          mappings = {
+              i = { ["<c-f>"] = require('telescope.actions').to_fuzzy_refine },
+          },
+      },
     },
     extensions = {
         fzf = {

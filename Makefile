@@ -28,7 +28,7 @@ zsh:
 	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 nvim:
-	curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+	curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
 	chmod +x nvim.appimage
 	sudo rm -f /usr/bin/nvim
 	sudo mv nvim.appimage /usr/bin/nvim

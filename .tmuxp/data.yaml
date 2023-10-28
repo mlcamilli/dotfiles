@@ -6,10 +6,10 @@ windows:
   panes:
   - focus: true
     shell_command:
-    - cd /home/boos3y/dev/rhythm-data
+    - cd ~/dev/rhythm-data
     - vim
   - shell_command:
-    - cd /home/boos3y/dev/rhythm-data
+    - cd ~/dev/rhythm-data
   - shell_command:
-    - cd /home/boos3y/dev/rhythm-data
+    - cd ~/dev/rhythm-data
   window_name: rhythm-data

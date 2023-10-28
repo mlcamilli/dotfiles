@@ -6,10 +6,10 @@ windows:
   panes:
   - focus: true
     shell_command:
-    - cd /home/boos3y/dev/rhythm-app
+    - cd ~/dev/rhythm-app
     - nvim
   - shell_command:
-    - cd /home/boos3y/dev/rhythm-app
+    - cd ~/dev/rhythm-app
   - shell_command:
-    - cd /home/boos3y/dev/rhythm-app/frontendnx
+    - cd ~/dev/rhythm-app/frontendnx
   window_name: rhythm

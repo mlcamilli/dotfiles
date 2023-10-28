@@ -54,6 +54,9 @@ asdf:
 	asdf global python 3.10.5
 
 pipx:
+	@if [ -d ~/.local/pipx ] ; then \
+		rm -rf ~/local/pipx; \
+	fi
 	python -m pip install --user pipx
 	python -m pipx ensurepath
 	pipx install tmuxp ruff

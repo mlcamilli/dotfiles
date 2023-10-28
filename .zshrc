@@ -97,7 +97,7 @@ export PATH=/usr/local/go/bin:~/.local/bin:$PATH
 
 alias fuck='sudo $(fc -ln -1)'
 alias delpyc="sudo find . -name '*.pyc' -delete"
-alias mux='tmuxp'
+alias mux='tmuxp load'
 alias ku="kubectl"
 alias dc='docker compose'
 alias dcr='docker compose run --rm'

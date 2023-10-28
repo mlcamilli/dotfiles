@@ -4,3 +4,4 @@ zsh
 libevent-dev
 ncurses-dev
 duf
+libfuse2

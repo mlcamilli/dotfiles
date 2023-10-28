@@ -21,7 +21,9 @@ tmux:
 	tar -zxf ~/tmux.tar.gz -C ~/
 	cd ~/tmux-3.3a; sh configure; make && sudo make install
 	rm -rf ~/tmux-3.3a; rm ~/tmux.tar.gz
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	@if [ ! -d ~/.tmux/plugins/tpm ] ; then \
+		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm ; \
+	fi
 
 zsh:
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -52,12 +54,13 @@ asdf:
 	asdf global python 3.10.5
 
 pipx:
-	python3 -m pip install --user pipx
-	python3 -m pipx ensurepath
-	pipx install tmuxp black isort flake8
+	python -m pip install --user pipx
+	python -m pipx ensurepath
+	pipx install tmuxp ruff
 
-winyank:
+windows:
 	curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
 	unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
 	chmod +x /tmp/win32yank.exe
 	sudo mv /tmp/win32yank.exe /usr/local/bin/
+	sudo apt install wslu

@@ -6,3 +6,9 @@ To utilize this first install packages
 
 Install tmux plugins
 `<Ctrl-Space> + I`
+
+# Windows
+Be sure to set the following env var:
+`export BROWSER=/usr/bin/wslview`
+
+in the ~.env_file.

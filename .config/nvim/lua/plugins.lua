@@ -47,6 +47,7 @@ require("lazy").setup(
         require('nvim-treesitter.install').update(
           { with_sync = true, prefer_git = true })
       end,
+      event = "VeryLazy",
       config = function() require('plugins.nvim-treesitter') end
     },
     'ryanoasis/vim-devicons',
@@ -63,7 +64,6 @@ require("lazy").setup(
     "williamboman/mason.nvim",
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
-    'jose-elias-alvarez/null-ls.nvim',
     {
       'hrsh7th/nvim-cmp',
       dependencies = {
@@ -75,6 +75,7 @@ require("lazy").setup(
         'L3MON4D3/LuaSnip',
         'saadparwaiz1/cmp_luasnip'
       },
+      event = "VeryLazy",
     },
     {
       'nvim-lualine/lualine.nvim',

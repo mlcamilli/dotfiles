@@ -1,4 +1,4 @@
-session_name: 'data'
+session_name: 'pulse'
 windows:
 - focus: 'true'
   layout: ba71,179x52,0,0{89x52,0,0,0,89x52,90,0[89x26,90,0,1,89x25,90,27,2]}
@@ -6,10 +6,10 @@ windows:
   panes:
   - focus: true
     shell_command:
-    - cd ~/dev/rhythm-data
-    - vim
+    - cd ~/dev/rhythm-pulse
+    - nvim
   - shell_command:
-    - cd ~/dev/rhythm-data
+    - cd ~/dev/rhythm-pulse
   - shell_command:
-    - cd ~/dev/rhythm-data
-  window_name: rhythm-data
+    - cd ~/dev/rhythm-pulse
+  window_name: pulse

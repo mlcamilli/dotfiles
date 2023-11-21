@@ -131,8 +131,6 @@ fi
 
 if [ -f ~/.env_file ]; then
     source ~/.env_file
-else
-    print "~/.env_file not found."
 fi
 
 # Start Docker daemon automatically when logging in if not running.

@@ -124,7 +124,10 @@ export PATH=$PATH:$HOME/.asdf/installs/nodejs/14.5.0/.npm/bin/
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
-. $HOME/.asdf/asdf.sh
+
+if [ -f ~/.asdf/asdf.sh ]; then
+    . $HOME/.asdf/asdf.sh
+fi
 
 if [ -f ~/.env_file ]; then
     source ~/.env_file

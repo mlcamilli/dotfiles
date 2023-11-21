@@ -29,6 +29,7 @@ tmux:
 
 zsh:
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	mkdir ~/.oh-my-zsh/themes/lib
 	git clone https://github.com/dracula/zsh.git ~/.oh-my-zsh/themes/lib/dracula
 	ln -sfn ~/.oh-my-zsh/themes/lib/dracula/dracula.zsh-theme ~/.oh-my-zsh//themes/dracula.zsh-theme
 	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions

@@ -4,6 +4,8 @@ BASEDIR := $(CURDIR)
 
 install: packages tmux zsh nvim ripgrep asdf pipx link
 
+light: packages zsh nvm ripgrep link
+
 link:
 	# zsh
 	ln -sfn ${BASEDIR}/.zshrc ~/.zshrc

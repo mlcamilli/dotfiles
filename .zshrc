@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/boos3y/.oh-my-zsh
+  export ZSH=$HOME/.oh-my-zsh
   export PATH=$PATH:/snap/bin
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -118,9 +118,7 @@ export DISABLE_AUTO_TITLE='true'
 #
 #Turn off auto cd
 unsetopt AUTO_CD
-export PATH=$PATH:/home/boos3y/bin/slack-theme
-export PATH=$PATH:/home/boos3y/.asdf/installs/nodejs/14.5.0/.npm/bin/
-export SLACK_THEME_SHELL_PROFILE="/home/boos3y/.zshrc"
+export PATH=$PATH:$HOME/.asdf/installs/nodejs/14.5.0/.npm/bin/
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

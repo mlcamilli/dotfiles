@@ -29,9 +29,9 @@ tmux:
 
 zsh:
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-	curl -o $HOME/.oh-my-zsh/themes/dracula.zsh-theme https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme
+	curl -o ~/.oh-my-zsh/themes/dracula.zsh-theme https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme
 	git clone https://github.com/dracula/zsh.git
-	git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 nvim:
 	curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage

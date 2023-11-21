@@ -75,7 +75,7 @@ export PATH=/usr/local/go/bin:~/.local/bin:$PATH
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-    PROMPT = '%{$fg[red]%} [SSH] '$PROMPT
+    PROMPT='%F{red}[SSH] %f'$PROMPT
 fi
 #   export EDITOR='mvim'
 # fi

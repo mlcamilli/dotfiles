@@ -21,7 +21,7 @@ link:
 tmux:
 	curl -sLo ~/tmux.tar.gz https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz
 	tar -zxf ~/tmux.tar.gz -C ~/
-	cd ~/tmux-3.3a; sh configure; make && sudo make install
+	cd ~/tmux-3.3a; sh configure; make && $(if $(NO_SUDO),,sudo ) make install
 	rm -rf ~/tmux-3.3a; rm ~/tmux.tar.gz
 	@if [ ! -d ~/.tmux/plugins/tpm ] ; then \
 		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm ; \
@@ -37,16 +37,16 @@ zsh:
 nvim:
 	curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
 	chmod +x nvim.appimage
-	sudo rm -f /usr/bin/nvim
-	sudo mv nvim.appimage /usr/bin/nvim
+	$(if $(NO_SUDO),,sudo )rm -f /usr/bin/nvim
+	$(if $(NO_SUDO),,sudo )mv nvim.appimage /usr/bin/nvim
 
 ripgrep:
 	curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
-	sudo dpkg -i ripgrep_13.0.0_amd64.deb
+	$(if $(NO_SUDO),,sudo )dpkg -i ripgrep_13.0.0_amd64.deb
 	rm ripgrep_13.0.0_amd64.deb
 
 packages:
-	sudo apt install $(shell cat pkglist)
+	$(if $(NO_SUDO),,sudo )apt install $(shell cat pkglist)
 
 asdf:
 	git clone https://github.com/asdf-vm/asdf.git ~/.asdf
@@ -70,5 +70,5 @@ windows:
 	curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
 	unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
 	chmod +x /tmp/win32yank.exe
-	sudo mv /tmp/win32yank.exe /usr/local/bin/
-	sudo apt install wslu
+	$(if $(NO_SUDO),,sudo )mv /tmp/win32yank.exe /usr/local/bin/
+	$(if $(NO_SUDO),,sudo )apt install wslu

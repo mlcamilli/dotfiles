@@ -136,7 +136,7 @@ else
 fi
 
 # Start Docker daemon automatically when logging in if not running.
-if [ $DOCKER_ENABLED = "true" ]; then
+if [ "$$DOCKER_ENABLED" = "true" ]; then
     RUNNING=$(ps aux | grep dockerd | grep -v grep)
     if [ -z "$RUNNING" ]; then
         sudo dockerd > /dev/null 2>&1 &

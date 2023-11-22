@@ -28,7 +28,7 @@ tmux:
 	fi
 
 zsh:
-	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	sh -c "$$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
 	mkdir ~/.oh-my-zsh/themes/lib
 	git clone https://github.com/dracula/zsh.git ~/.oh-my-zsh/themes/lib/dracula
 	ln -sfn ~/.oh-my-zsh/themes/lib/dracula/dracula.zsh-theme ~/.oh-my-zsh//themes/dracula.zsh-theme

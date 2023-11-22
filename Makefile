@@ -4,13 +4,13 @@ BASEDIR := $(CURDIR)
 
 install: packages tmux zsh nvim ripgrep asdf pipx link
 
-light: packages zsh nvm ripgrep link
+light: packages zsh nvim ripgrep link
 
 link:
 	# zsh
 	ln -sfn ${BASEDIR}/.zshrc ~/.zshrc
 	# nvim
-	ln -sfn ${BASEDIR}/.config/nvim/ ~/.config/nvim
+	mkdir -p ~/.config && ln -sfn ${BASEDIR}/.config/nvim/ ~/.config/nvim
 	# git
 	ln -sfn ${BASEDIR}/.gitconfig ~/.gitconfig
 	# Tmux

@@ -42,9 +42,9 @@ nvim:
 	$(if $(NO_SUDO),,sudo )mv nvim.appimage /usr/bin/nvim
 
 ripgrep:
-	curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
-	$(if $(NO_SUDO),,sudo )dpkg -i ripgrep_13.0.0_amd64.deb
-	rm ripgrep_13.0.0_amd64.deb
+	curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.0.1/ripgrep_14.0.1-1_amd64.deb
+	$(if $(NO_SUDO),,sudo )dpkg -i ripgrep_14.0.1-1_amd64.deb
+	rm ripgrep_14.0.1-1_amd64.deb
 
 packages:
 	$(if $(NO_SUDO),,sudo )apt install $(shell cat pkglist)

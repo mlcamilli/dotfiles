@@ -119,6 +119,7 @@ export DISABLE_AUTO_TITLE='true'
 #Turn off auto cd
 unsetopt AUTO_CD
 export PATH=$PATH:$HOME/.asdf/installs/nodejs/14.5.0/.npm/bin/
+export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

@@ -16,6 +16,7 @@ link:
 	# Tmux
 	ln -sfn ${BASEDIR}/.tmuxp ~/.tmuxp
 	ln -sfn ${BASEDIR}/.tmux.conf ~/.tmux.conf
+	ln -sfn ${BASEDIR}/.ripgreprc ~/.ripgreprc
 
 # Install Tmux
 tmux:

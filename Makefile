@@ -53,9 +53,11 @@ asdf:
 	git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 	asdf plugin add nodejs
 	asdf plugin add python
+	asdf plugin add pnpm
 	bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
-	asdf install nodejs 16.13.0
-	asdf global nodejs 16.13.0
+	asdf install nodejs 20.10.0
+	asdf install pnpm 8.15.1
+	asdf global nodejs 20.10.0
 	asdf install python 3.10.5
 	asdf global python 3.10.5
 

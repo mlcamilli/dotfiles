@@ -143,3 +143,11 @@ if [ "$DOCKER_ENABLED" = "true" ]; then
     fi
 fi
 unsetopt PROMPT_SP
+
+# pnpm
+export PNPM_HOME="/home/boos3y/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

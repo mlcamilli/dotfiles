@@ -2,7 +2,7 @@ SHELL=/bin/bash
 
 BASEDIR := $(CURDIR)
 
-install: packages tmux zsh nvim ripgrep asdf pipx link
+install: packages tmux zsh nvim ripgrep asdf mise pipx link
 
 light: packages zsh nvim ripgrep link
 
@@ -60,6 +60,10 @@ asdf:
 	asdf global nodejs 20.10.0
 	asdf install python 3.10.5
 	asdf global python 3.10.5
+
+mise:
+	curl https://mise.run | sh
+
 
 pipx:
 	@if [ -d ~/.local/pipx ] ; then \

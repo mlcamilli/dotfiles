@@ -145,9 +145,9 @@ fi
 unsetopt PROMPT_SP
 
 # pnpm
-export PNPM_HOME="/home/boos3y/.local/share/pnpm"
+export PNPM_HOME="/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *) export PATH="$HOME/$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end

@@ -17,35 +17,15 @@ vim.opt.rtp:prepend(lazypath)
 local fn = vim.fn
 local cmd = vim.cmd
 local opt = vim.opt
-require("lazy").setup(
+require("lazy").setup("plugins",
   {
-
-    "williamboman/mason.nvim",
-    'williamboman/mason-lspconfig.nvim',
-    'neovim/nvim-lspconfig',
-    {
-      'hrsh7th/nvim-cmp',
-      dependencies = {
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-cmdline',
-        'hrsh7th/cmp-nvim-lsp-signature-help',
-        'L3MON4D3/LuaSnip',
-        'saadparwaiz1/cmp_luasnip'
-      },
-      event = "VeryLazy",
+    change_detection = {
+      notify = false,
+      enabled = true,
     },
-    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}, config = function() require("ibl").setup() end },
-    {
-      'windwp/nvim-autopairs',
-      event = "InsertEnter",
-      opts = {} -- this is equalent to setup({}) function
+    performance = {
+      cache = { enabled = true },
     },
-    { "windwp/nvim-ts-autotag" }
-
-  },
-  {
     install = {
       -- install missing plugins on startup. This doesn't increase startup time.
       missing = true,

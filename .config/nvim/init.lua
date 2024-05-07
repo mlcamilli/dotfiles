@@ -1,4 +1,4 @@
-require 'plugins'
+require 'lazy'
 require 'options'
 require 'autocmd'
 require 'filetype'

@@ -19,48 +19,7 @@ local cmd = vim.cmd
 local opt = vim.opt
 require("lazy").setup(
   {
-    {
-      'dracula/vim',
-      name = 'dracula',
-      lazy = false,
-      priority = 1000,
-      config = function()
-        opt.bg = "dark"
-        opt.termguicolors = true
-        cmd([[colorscheme dracula]])
-      end,
-    },
-    {
-      'kyazdani42/nvim-tree.lua',
-      dependencies = { 'nvim-tree/nvim-web-devicons', },
-      tag = 'nightly',
-      config = function() require('plugins.nvim-tree') end
-    },
-    'flazz/vim-colorschemes',
-    'stevearc/dressing.nvim',
-    'rcarriga/nvim-notify',
-    'ConradIrwin/vim-bracketed-paste',
-    {
-      'nvim-treesitter/nvim-treesitter',
-      dependences = { "windwp/nvim-ts-autotag" },
-      build = function()
-        require('nvim-treesitter.install').update(
-          { with_sync = true, prefer_git = true })
-      end,
-      event = "VeryLazy",
-      config = function() require('plugins.nvim-treesitter') end
-    },
-    'ryanoasis/vim-devicons',
-    {
-      "kylechui/nvim-surround",
-      config = function() require("nvim-surround").setup({}) end,
-      event = "VeryLazy",
-    },
-    {
-      'numToStr/Comment.nvim',
-      config = function() require('Comment').setup() end,
-      event = "VeryLazy",
-    },
+
     "williamboman/mason.nvim",
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',

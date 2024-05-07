@@ -13,9 +13,13 @@ cmd([[autocmd BufWritePre * :%s/\s\+$//e]])
 
 
 api.nvim_create_autocmd("BufWritePre", {
-    callback = function()
-        -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-        vim.lsp.buf.format({async = False})
-        vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
-    end,
+  callback = function(args)
+    -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+    -- vim.lsp.buf.format({async = False})
+    require("conform").format({ bufnr = args.buf, lsp_fallback = true })
+    -- On python files call organize imports on save
+    if vim.bo[args.buf].filetype == 'python' then
+      vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
+    end
+  end,
 })

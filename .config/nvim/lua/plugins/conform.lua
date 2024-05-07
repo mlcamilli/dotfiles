@@ -12,16 +12,6 @@ return {
       css = { 'prettier' },
       scss = { 'prettier' },
     },
-    format_on_save = function(bufnr)
-      -- Disable autoformat for files in a certain path
-      local bufname = vim.api.nvim_buf_get_name(bufnr)
-      if bufname:match('/node_modules/') then
-        return
-      end
-
-      return { timeout_ms = 500, lsp_fallback = true, async = true }
-    end,
-    format_after_save = { lsp_fallback = true },
   },
   config = function(_, opts)
     local conform = require('conform')

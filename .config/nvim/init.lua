@@ -1,7 +1,1 @@
-require 'lazy'
-require 'options'
-require 'autocmd'
-require 'filetype'
-require 'keymaps'
-require 'lsp'
-require 'statuscolumn'
+require("core")

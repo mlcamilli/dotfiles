@@ -22,7 +22,7 @@ return {
         untracked = { text = "▎" },
       }
     }
-    require('plugins.gitsigns').setup(opts)
+    require('gitsigns').setup(opts)
     vim.cmd([[highlight link GitSignsCurrentLineBlame Comment]])
   end
 }

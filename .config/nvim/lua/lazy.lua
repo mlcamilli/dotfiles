@@ -36,46 +36,6 @@ require("lazy").setup(
       },
       event = "VeryLazy",
     },
-    {
-      'nvim-lualine/lualine.nvim',
-      config = function() require('plugins.lualine') end,
-      event = "VeryLazy",
-    },
-    {
-      'lewis6991/gitsigns.nvim',
-      branch = 'main',
-      dependencies = { 'nvim-lua/plenary.nvim' },
-      config = function() require('plugins.gitsigns') end,
-      event = "VeryLazy",
-    },
-    {
-      'nvim-telescope/telescope.nvim',
-      dependencies = { { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, 'nvim-lua/plenary.nvim' },
-      config = function() require('plugins.telescope') end
-    },
-    {
-      "iamcco/markdown-preview.nvim",
-      build = function() vim.fn["mkdp#util#install"]() end,
-      event = "VeryLazy",
-    },
-    {
-      "akinsho/bufferline.nvim",
-      event = "VeryLazy",
-      dependencies = { 'nvim-tree/nvim-web-devicons' },
-      config = function() require('plugins.bufferline') end,
-    },
-    {
-      "folke/trouble.nvim",
-      event = "VeryLazy",
-      dependencies = "nvim-tree/nvim-web-devicons",
-      config = function() require("trouble").setup() end
-    },
-    {
-      "folke/todo-comments.nvim",
-      event = "VeryLazy",
-      dependencies = "nvim-lua/plenary.nvim",
-      config = function() require("todo-comments").setup() end
-    },
     { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}, config = function() require("ibl").setup() end },
     {
       'windwp/nvim-autopairs',

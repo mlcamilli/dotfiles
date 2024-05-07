@@ -1,9 +1,9 @@
 return {
-  "akinsho/bufferline.nvim"
+  "akinsho/bufferline.nvim",
   event = "VeryLazy",
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
-    require('plugins.bufferline').setup({
+    require('bufferline').setup({
       options = {
         -- separator_style = 'padded_slant',
         diagnostics = "nvim_lsp",

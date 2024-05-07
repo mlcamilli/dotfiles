@@ -1,6 +1,3 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
---
---
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -14,9 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local fn = vim.fn
-local cmd = vim.cmd
-local opt = vim.opt
 require("lazy").setup("plugins",
   {
     change_detection = {
@@ -27,9 +21,7 @@ require("lazy").setup("plugins",
       cache = { enabled = true },
     },
     install = {
-      -- install missing plugins on startup. This doesn't increase startup time.
       missing = true,
-      -- try to load one of these colorschemes when starting an installation during startup
       colorscheme = { "dracula" },
     }
   }

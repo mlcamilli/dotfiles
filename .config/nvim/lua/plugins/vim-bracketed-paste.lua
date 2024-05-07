@@ -1,1 +1,4 @@
-return { 'ConradIrwin/vim-bracketed-paste' }
+return {
+  'ConradIrwin/vim-bracketed-paste',
+  event = "VeryLazy"
+}

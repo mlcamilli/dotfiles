@@ -11,7 +11,7 @@ map('n', '<C-k>', '<C-w>k', {})
 map('n', '<C-l>', '<C-w>l', {})
 
 local options = { noremap = true }
-local silent_options = { noremap = true, silent = true}
+local silent_options = { noremap = true, silent = true }
 
 -- More sane line movement
 map('', 'J', 'G', options)
@@ -36,6 +36,8 @@ map('n', '<leader>n', ':NvimTreeFindFile<CR>', options)
 
 -- Paste mode
 map('n', '<F6>', ':set paste!<cr>', options)
+map('v', 'Y', '"+y', options)
+map('n', 'Y', '"+y', options)
 
 -- Semi colon to colon
 map('n', ';', ':', options)

@@ -1,6 +1,7 @@
 return {
   'kyazdani42/nvim-tree.lua',
   dependencies = { 'nvim-tree/nvim-web-devicons', },
+  event = "VeryLazy",
   tag = 'nightly',
   opts = {
     disable_netrw        = true,

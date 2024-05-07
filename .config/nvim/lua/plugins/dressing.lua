@@ -1,1 +1,4 @@
-return { 'flazz/vim-colorschemes' }
+return {
+  'stevearc/dressing.nvim',
+  opts = {},
+}

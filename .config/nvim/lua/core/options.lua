@@ -50,4 +50,4 @@ if vim.fn.executable('rg')
 then
   opt.grepprg = "rg"
 end
-cmd('set clipboard=unnamedplus')
+-- cmd('set clipboard=unnamedplus')

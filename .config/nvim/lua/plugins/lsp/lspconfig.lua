@@ -66,20 +66,7 @@ M.setup = function()
         },
         ruff_lsp = {
         },
-        tsserver = {
-          settings = {
-            javascript = {
-              format = {
-                enable = false,
-              },
-            },
-            typescript = {
-              format = {
-                enable = false,
-              },
-            }
-          },
-        },
+        tsserver = {},
         rust_analyzer = {},
         lua_ls = {
           settings = {

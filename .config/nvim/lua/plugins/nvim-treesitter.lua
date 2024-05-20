@@ -5,7 +5,6 @@ return {
     require('nvim-treesitter.install').update(
       { with_sync = true, prefer_git = true })
   end,
-  event = "VeryLazy",
   config = function()
     require('nvim-treesitter.configs').setup({
       -- One of "all", "maintained" (parsers with maintainers), or a list of languages

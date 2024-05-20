@@ -49,7 +49,3 @@ map('n', '<C-b>', '<cmd>Telescope buffers<cr>', options)
 
 -- Trouble Bindings
 map('n', '<C-v>', ':TroubleToggle document_diagnostics<cr>', options)
-
--- Comment Bindings
-map('n', '<CR>', '<Plug>(comment_toggle_linewise_current)', {})
-map('x', '<CR>', '<Plug>(comment_toggle_linewise_visual)', {})

@@ -10,14 +10,11 @@ M.setup = function()
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-nvim-lsp-signature-help',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip'
     },
     event = "VeryLazy",
     config = function()
       local cmp = require('cmp')
       local icons = _G.icons
-      local luasnip = require("luasnip")
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       cmp.event:on(
         'confirm_done',
@@ -36,7 +33,7 @@ M.setup = function()
         },
         snippet = {
           expand = function(args)
-            luasnip.lsp_expand(args.body) -- For `luasnip` users.
+            vim.snippet.expand(args.body)
           end,
         },
         completion = {
@@ -76,16 +73,15 @@ M.setup = function()
         sources = {
           { name = 'nvim_lsp_signature_help' },
           { name = 'nvim_lsp' },
+          { name = 'path' },
           {
             name = 'buffer',
-            options = {
-              get_bufnrs = function()
-                return vim.api.nvim_list_bufs()
-              end,
-            },
+            -- options = {
+            --   get_bufnrs = function()
+            --     return vim.api.nvim_list_bufs()
+            --   end,
+            -- },
           },
-          { name = 'luasnip' },
-          { name = 'path' },
         },
         formatting = {
           fields = { 'kind', 'abbr', 'menu' },

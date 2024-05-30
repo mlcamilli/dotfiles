@@ -75,3 +75,4 @@ windows:
 	chmod +x /tmp/win32yank.exe
 	$(if $(NO_SUDO),,sudo )mv /tmp/win32yank.exe /usr/local/bin/
 	$(if $(NO_SUDO),,sudo )apt install wslu
+	ln -sfn /mnt/c/Program Files/win32yank.exe /usr/local/bin/

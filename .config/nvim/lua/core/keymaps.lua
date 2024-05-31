@@ -1,8 +1,5 @@
 local map = vim.api.nvim_set_keymap
 
--- Visually wrap long lines
--- noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
--- noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 -- Better pane management
 map('n', '<C-h>', '<C-w>h', {})
@@ -46,6 +43,3 @@ map('n', ';', ':', options)
 map('n', '<C-p>', '<cmd>Telescope find_files<cr>', options)
 map('n', '<C-f>', '<cmd>Telescope live_grep<cr>', options)
 map('n', '<C-b>', '<cmd>Telescope buffers<cr>', options)
-
--- Trouble Bindings
-map('n', '<C-v>', ':TroubleToggle document_diagnostics<cr>', options)

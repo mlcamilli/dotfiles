@@ -35,5 +35,7 @@ return {
     },
   },
 
-  config = function() require("trouble").setup() end
+  config = function()
+    require("trouble").setup()
+  end
 }

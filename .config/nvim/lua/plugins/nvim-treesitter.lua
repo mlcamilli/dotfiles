@@ -1,6 +1,6 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  dependences = { "windwp/nvim-ts-autotag" },
+  dependencies = { "windwp/nvim-ts-autotag" },
   build = function()
     require('nvim-treesitter.install').update(
       { with_sync = true, prefer_git = true })

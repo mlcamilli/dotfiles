@@ -26,8 +26,10 @@ map("n", "<A-l>", ":BufferLineCycleNext<CR>", silent_options)
 -- Set jj to esc
 map('i', 'jj', '<Esc>', {})
 
+
+
 -- NVIM Tree
-map('n', '<C-n>', ':NvimTreeToggle<CR>', silent_options)
+-- map('n', '<C-n>', ':NvimTreeToggle<CR>', silent_options)
 map('n', '<leader>r', ':NvimTreeRefresh<CR>', options)
 map('n', '<leader>n', ':NvimTreeFindFile<CR>', options)
 

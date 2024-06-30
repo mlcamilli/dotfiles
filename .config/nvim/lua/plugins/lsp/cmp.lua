@@ -15,11 +15,6 @@ M.setup = function()
     config = function()
       local cmp = require('cmp')
       local icons = _G.icons
-      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      cmp.event:on(
-        'confirm_done',
-        cmp_autopairs.on_confirm_done()
-      )
       cmp.setup({
         debug = false,
         throttle_time = 80,

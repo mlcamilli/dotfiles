@@ -1,6 +1,7 @@
 return {
   'echasnovski/mini.pairs',
-  event = "VeryLazy",
+  -- Can't be lazy or it will overwrite keybinds...
+  -- event = "VeryLazy",
   config = function()
     require('mini.pairs').setup()
   end

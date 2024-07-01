@@ -102,19 +102,13 @@ alias dc='docker compose'
 alias dcr='docker compose run --rm'
 alias docker-compose='docker compose'
 alias kudown='kubectl get pods --all-namespaces | grep -v Running'
-alias ek="eksctl"
+alias htop ="btop"
+alias top ="btop"
+alias cat="batcat"
 alias release="git log --pretty=format:'* %s' --reverse \`git describe --tags --abbrev=0\`..HEAD"
-kurestart () { ku get pods "$@" -o yaml | ku replace --force -f -}
-uwsgitop () { ku exec -it "$@" uwsgitop localhost:5050}
 export DISABLE_AUTO_TITLE='true'
 
 
-# VIM BASH SETTINGS?
-#bindkey -v
-#bindkey 'jj' vi-cmd-mode
-#bindkey '^j' beginning-of-line
-#bindkey '^l' end-of-line
-#
 #Turn off auto cd
 unsetopt AUTO_CD
 export PATH=$PATH:$HOME/.asdf/installs/nodejs/14.5.0/.npm/bin/

@@ -103,6 +103,7 @@ alias dcr='docker compose run --rm'
 alias docker-compose='docker compose'
 alias kudown='kubectl get pods --all-namespaces | grep -v Running'
 alias htop ="btop"
+alias sed="sad"
 alias top ="btop"
 alias cat="batcat"
 alias release="git log --pretty=format:'* %s' --reverse \`git describe --tags --abbrev=0\`..HEAD"

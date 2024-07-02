@@ -49,6 +49,10 @@ ripgrep:
 
 packages:
 	$(if $(NO_SUDO),,sudo )apt install $(shell cat pkglist)
+	wget 'https://github.com/ms-jpq/sad/releases/latest/download/x86_64-unknown-linux-gnu.deb'
+	$(if $(NO_SUDO),,sudo )apt install x86_64-unknown-linux-gnu.deb
+	rm xx86_64-unknown-linux-gnu.deb
+
 
 asdf:
 	git clone https://github.com/asdf-vm/asdf.git ~/.asdf
@@ -68,7 +72,7 @@ pipx:
 	fi
 	python -m pip install --user pipx
 	python -m pipx ensurepath
-	pipx install tmuxp ruff
+	pipx install tmuxp ruff ranger-fm
 
 windows:
 	curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.1.1/win32yank-x64.zip

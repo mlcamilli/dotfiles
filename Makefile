@@ -51,7 +51,11 @@ packages:
 	$(if $(NO_SUDO),,sudo )apt install $(shell cat pkglist)
 	wget 'https://github.com/ms-jpq/sad/releases/latest/download/x86_64-unknown-linux-gnu.deb'
 	$(if $(NO_SUDO),,sudo )apt install x86_64-unknown-linux-gnu.deb
-	rm xx86_64-unknown-linux-gnu.deb
+	rm x86_64-unknown-linux-gnu.deb
+	wget https://github.com/sxyazi/yazi/releases/download/v0.2.5/yazi-x86_64-unknown-linux-gnu.zip
+	unzip yazi-x86_64-unknown-linux-gnu
+	$(if $(NO_SUDO),,sudo )mv yazi-x86_64-unknown-linux-gnu/yazi /usr/local/bin/yazi
+	rm -rf yazi-x86_64-unknown-linux-gnu*
 
 
 asdf:

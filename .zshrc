@@ -106,6 +106,7 @@ alias htop ="btop"
 alias sed="sad"
 alias top ="btop"
 alias cat="batcat"
+alias ls="exa"
 alias release="git log --pretty=format:'* %s' --reverse \`git describe --tags --abbrev=0\`..HEAD"
 export DISABLE_AUTO_TITLE='true'
 
@@ -127,6 +128,12 @@ fi
 if [ -f ~/.env_file ]; then
     source ~/.env_file
 fi
+
+if [ -f ~/.zshrc.local ]; then
+    source ~/.zshrc.local
+fi
+
+
 
 # Start Docker daemon automatically when logging in if not running.
 if [ "$DOCKER_ENABLED" = "true" ]; then

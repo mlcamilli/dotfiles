@@ -6,10 +6,10 @@ windows:
   panes:
   - focus: true
     shell_command:
-    - cd ~/dev/Atlas
+    - cd ~/dev/atlas
     - nvim
   - shell_command:
-    - cd ~/dev/Atlas
+    - cd ~/dev/atlas
   - shell_command:
-    - cd ~/dev/Atlas
+    - cd ~/dev/atlas
   window_name: Atlas

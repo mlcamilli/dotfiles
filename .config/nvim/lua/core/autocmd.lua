@@ -1,13 +1,14 @@
 local cmd = vim.cmd
 local api = vim.api
 
-
+-- Automatically open quickfix
 cmd([[
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 ]])
 
+--
 -- Delte trailing white space
 cmd([[autocmd BufWritePre * :%s/\s\+$//e]])
 

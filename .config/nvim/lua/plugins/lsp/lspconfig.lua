@@ -63,9 +63,9 @@ M.setup = function()
             }
           }
         },
-        ruff_lsp = {
+        ruff = {
         },
-        tsserver = {},
+        ts_ls = {},
         rust_analyzer = {},
         lua_ls = {
           settings = {

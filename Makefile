@@ -38,8 +38,8 @@ zsh:
 	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 nvim:
-	curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-	chmod +x nvim.appimage
+	curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage
+	chmod u+x nvim.appimage
 	$(if $(NO_SUDO),,sudo )rm -f /usr/bin/nvim
 	$(if $(NO_SUDO),,sudo )mv nvim.appimage /usr/bin/nvim
 

@@ -47,6 +47,5 @@ opt.synmaxcol = 1000
 
 if vim.fn.executable('rg')
 then
-  opt.grepprg = "rg"
+  opt.grepprg = "rg --vimgrep"
 end
--- cmd('set clipboard=unnamedplus')

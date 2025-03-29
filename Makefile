@@ -17,6 +17,8 @@ link:
 	ln -sfn ${BASEDIR}/.tmuxp ~/.tmuxp
 	ln -sfn ${BASEDIR}/.tmux.conf ~/.tmux.conf
 	ln -sfn ${BASEDIR}/.ripgreprc ~/.ripgreprc
+	mkdir -p ~/.config/btop/ && ln -sfn ${BASEDIR}/.config/btop/btop.conf ~/.config/btop/btop.conf
+
 
 # Install Tmux
 tmux:
@@ -36,8 +38,8 @@ zsh:
 	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 nvim:
-	curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-	chmod +x nvim.appimage
+	curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage
+	chmod u+x nvim.appimage
 	$(if $(NO_SUDO),,sudo )rm -f /usr/bin/nvim
 	$(if $(NO_SUDO),,sudo )mv nvim.appimage /usr/bin/nvim
 
@@ -48,6 +50,14 @@ ripgrep:
 
 packages:
 	$(if $(NO_SUDO),,sudo )apt install $(shell cat pkglist)
+	wget 'https://github.com/ms-jpq/sad/releases/latest/download/x86_64-unknown-linux-gnu.deb'
+	$(if $(NO_SUDO),,sudo )apt install ./x86_64-unknown-linux-gnu.deb
+	rm x86_64-unknown-linux-gnu.deb
+	wget https://github.com/sxyazi/yazi/releases/download/v0.2.5/yazi-x86_64-unknown-linux-gnu.zip
+	unzip yazi-x86_64-unknown-linux-gnu
+	$(if $(NO_SUDO),,sudo )mv yazi-x86_64-unknown-linux-gnu/yazi /usr/local/bin/yazi
+	rm -rf yazi-x86_64-unknown-linux-gnu*
+
 
 asdf:
 	git clone https://github.com/asdf-vm/asdf.git ~/.asdf
@@ -67,12 +77,13 @@ pipx:
 	fi
 	python -m pip install --user pipx
 	python -m pipx ensurepath
-	pipx install tmuxp ruff
+	pipx install tmuxp ruff ranger-fm
 
 windows:
 	curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.1.1/win32yank-x64.zip
 	unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
 	chmod +x /tmp/win32yank.exe
-	$(if $(NO_SUDO),,sudo )mv /tmp/win32yank.exe /usr/local/bin/
+	$(if $(NO_SUDO),,sudo )mkdir -p /mnt/c/Program\ Files/win32yank/
+	$(if $(NO_SUDO),,sudo )mv /tmp/win32yank.exe /mnt/c/Program\ Files/win32yank/
 	$(if $(NO_SUDO),,sudo )apt install wslu
-	ln -sfn /mnt/c/Program Files/win32yank.exe /usr/local/bin/
+	$(if $(NO_SUDO),,sudo )ln -sfn /mnt/c/Program\ Files/win32yank/win32yank.exe /usr/local/bin

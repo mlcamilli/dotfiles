@@ -23,6 +23,6 @@ return {
       }
     }
     require('gitsigns').setup(opts)
-    vim.cmd([[highlight link GitSignsCurrentLineBlame Comment]])
+    vim.cmd([[highlight! link GitSignsCurrentLineBlame Comment]])
   end
 }

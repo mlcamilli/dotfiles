@@ -1,6 +1,7 @@
 return {
   'nvim-telescope/telescope.nvim',
   dependencies = { { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, 'nvim-lua/plenary.nvim' },
+  event = "VeryLazy",
   config = function()
     local telescope = require('telescope')
     telescope.setup {

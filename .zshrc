@@ -101,7 +101,6 @@ alias ku="kubectl"
 alias dc='docker compose'
 alias dcr='docker compose run --rm'
 alias docker-compose='docker compose'
-alias kudown='kubectl get pods --all-namespaces | grep -v Running'
 alias htop ="btop"
 alias sed="sad"
 alias top ="btop"
@@ -152,3 +151,8 @@ case ":$PATH:" in
   *) export PATH="$HOME/$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+#
+# 1Password Secret Injection
+export GITHUB_TOKEN=$(op read "op://dev/github_pat/credential")
+export NOTION_TOKEN=$(op read "op://dev/notion_token/credential")
+export OPEN_API_KEY=$(op read "op://dev/openapi_token/credential")

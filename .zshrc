@@ -105,7 +105,7 @@ alias htop ="btop"
 alias sed="sad"
 alias top ="btop"
 alias cat="batcat"
-alias ls="exa"
+alias ls="eza"
 alias release="git log --pretty=format:'* %s' --reverse \`git describe --tags --abbrev=0\`..HEAD"
 export DISABLE_AUTO_TITLE='true'
 
@@ -152,7 +152,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 #
-# 1Password Secret Injection
-export GITHUB_TOKEN=$(op read "op://dev/github_pat/credential")
-export NOTION_TOKEN=$(op read "op://dev/notion_token/credential")
-export OPEN_API_KEY=$(op read "op://dev/openapi_token/credential")
+# # 1Password Secret Injection
+# export GITHUB_TOKEN=$(op read "op://dev/github_pat/credential")
+# export NOTION_TOKEN=$(op read "op://dev/notion_token/credential")
+# export OPEN_API_KEY=$(op read "op://dev/openapi_token/credential")

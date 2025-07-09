@@ -22,10 +22,10 @@ link:
 
 # Install Tmux
 tmux:
-	curl -sLo ~/tmux.tar.gz https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz
+	curl -sLo ~/tmux.tar.gz https://github.com/tmux/tmux/releases/download/3.5a/tmux-3.5a.tar.gz
 	tar -zxf ~/tmux.tar.gz -C ~/
-	cd ~/tmux-3.3a; sh configure; make && $(if $(NO_SUDO),,sudo ) make install
-	rm -rf ~/tmux-3.3a; rm ~/tmux.tar.gz
+	cd ~/tmux-3.5a; sh configure; make
+	rm -rf ~/tmux-3.5a; rm ~/tmux.tar.gz
 	@if [ ! -d ~/.tmux/plugins/tpm ] ; then \
 		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm ; \
 	fi
@@ -38,7 +38,7 @@ zsh:
 	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 nvim:
-	curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage
+	curl -L -o nvim.appimage https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage
 	chmod u+x nvim.appimage
 	$(if $(NO_SUDO),,sudo )rm -f /usr/bin/nvim
 	$(if $(NO_SUDO),,sudo )mv nvim.appimage /usr/bin/nvim

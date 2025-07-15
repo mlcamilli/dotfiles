@@ -20,5 +20,6 @@ libxmlsec1-dev
 libffi-dev
 liblzma-dev
 bat
-exa
+eza
 unzip
+yacc

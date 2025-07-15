@@ -6,7 +6,6 @@ autocmd Filetype lua setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType javascript JsPreTmpl html
 ]])
 
 

@@ -49,3 +49,5 @@ if vim.fn.executable('rg')
 then
   opt.grepprg = "rg --vimgrep"
 end
+
+vim.o.updatetime = 250

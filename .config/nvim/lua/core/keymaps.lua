@@ -1,48 +1,41 @@
-local map = vim.api.nvim_set_keymap
-
-
 -- Better pane management
-map('n', '<C-h>', '<C-w>h', {})
-map('n', '<C-j>', '<C-w>j', {})
-map('n', '<C-k>', '<C-w>k', {})
-map('n', '<C-l>', '<C-w>l', {})
-
-local options = { noremap = true }
-local silent_options = { noremap = true, silent = true }
+vim.keymap.set('n', '<C-h>', '<C-w>h')
+vim.keymap.set('n', '<C-j>', '<C-w>j')
+vim.keymap.set('n', '<C-k>', '<C-w>k')
+vim.keymap.set('n', '<C-l>', '<C-w>l')
 
 -- More sane line movement
-map('', 'J', 'G', options)
-map('', 'K', '1G', options)
-map('', 'H', '^', options)
-map('', 'L', '$', options)
-map('v', 'L', 'g_', options)
-map('n', 'D', 'd$', options)
+vim.keymap.set('', 'J', 'G')
+vim.keymap.set('', 'K', '1G')
+vim.keymap.set('', 'H', '^')
+vim.keymap.set('', 'L', '$')
+vim.keymap.set('v', 'L', 'g_')
+vim.keymap.set('n', 'D', 'd$')
 
-
-map("n", "<A-h>", ":BufferLineCyclePrev<CR>", silent_options)
-map("n", "<A-l>", ":BufferLineCycleNext<CR>", silent_options)
+-- Buffer navigation
+vim.keymap.set("n", "<A-h>", ":BufferLineCyclePrev<CR>", { silent = true })
+vim.keymap.set("n", "<A-l>", ":BufferLineCycleNext<CR>", { silent = true })
 
 -- Set jj to esc
-map('i', 'jj', '<Esc>', {})
-
+vim.keymap.set('i', 'jj', '<Esc>')
 
 -- NVIM Tree
--- map('n', '<C-n>', ':NvimTreeToggle<CR>', silent_options)
-map('n', '<leader>r', ':NvimTreeRefresh<CR>', options)
-map('n', '<leader>n', ':NvimTreeFindFile<CR>', options)
+-- vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { silent = true })
+vim.keymap.set('n', '<leader>r', ':NvimTreeRefresh<CR>')
+vim.keymap.set('n', '<leader>n', ':NvimTreeFindFile<CR>')
 
 -- Paste mode
-map('n', '<F6>', ':set paste!<cr>', options)
-map('v', 'Y', '"+y', options)
-map('n', 'Y', '"+y', options)
+vim.keymap.set('n', '<F6>', ':set paste!<cr>')
+vim.keymap.set('v', 'Y', '"+y')
+vim.keymap.set('n', 'Y', '"+y')
 
 -- Semi colon to colon
-map('n', ';', ':', options)
+vim.keymap.set('n', ';', ':')
 
 -- Telescope Bindings
-map('n', '<C-p>', '<cmd>Telescope find_files<cr>', options)
-map('n', '<C-f>', '<cmd>Telescope live_grep<cr>', options)
-map('n', '<C-b>', '<cmd>Telescope buffers<cr>', options)
+vim.keymap.set('n', '<C-p>', '<cmd>Telescope find_files<cr>')
+vim.keymap.set('n', '<C-f>', '<cmd>Telescope live_grep<cr>')
+vim.keymap.set('n', '<C-b>', '<cmd>Telescope buffers<cr>')
 
 
 
@@ -88,4 +81,12 @@ end
 
 
 -- File Explorer Keybind
-vim.keymap.set('n', '<C-n>', minifiles_toggle, silent_options)
+vim.keymap.set('n', '<C-n>', minifiles_toggle, { silent = true })
+
+-- LSP Keybinds
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+vim.keymap.set('n', 'gK', vim.lsp.buf.hover)
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
+vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help)

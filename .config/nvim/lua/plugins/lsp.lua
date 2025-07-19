@@ -1,5 +1,3 @@
-require('plugins.lsp.icons')
-local config = require('plugins.lsp.config')
 return {
   {
     "mason-org/mason-lspconfig.nvim",
@@ -19,10 +17,6 @@ return {
       },
       {
         "neovim/nvim-lspconfig",
-        config = function()
-          -- Setup native LSP configuration after lspconfig is loaded
-          config.setup()
-        end
       },
     },
   }

@@ -32,10 +32,11 @@ vim.keymap.set('n', 'Y', '"+y')
 -- Semi colon to colon
 vim.keymap.set('n', ';', ':')
 
--- Telescope Bindings
-vim.keymap.set('n', '<C-p>', '<cmd>Telescope find_files<cr>')
-vim.keymap.set('n', '<C-f>', '<cmd>Telescope live_grep<cr>')
-vim.keymap.set('n', '<C-b>', '<cmd>Telescope buffers<cr>')
+-- Snacks Bindings
+vim.keymap.set('n', '<C-p>', function() require('snacks').picker.files() end)
+vim.keymap.set('n', '<C-f>', function() require('snacks').picker.grep() end)
+vim.keymap.set('n', '<C-b>', function() require('snacks').picker.buffers() end)
+vim.keymap.set('n', '<C-r>', function() require('snacks').picker.recent() end)
 
 
 
@@ -81,12 +82,15 @@ end
 
 
 -- File Explorer Keybind
-vim.keymap.set('n', '<C-n>', minifiles_toggle, { silent = true })
+vim.keymap.set('n', '<C-n>', function() require('snacks').explorer.open() end, { silent = true })
 
 -- LSP Keybinds
-vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+vim.keymap.set('n', 'gD', function() require('snacks').picker.lsp_declarations() end, { desc = "Goto Declaration" })
+vim.keymap.set('n', 'gd', function() require('snacks').picker.lsp_definitions() end, { desc = "Goto Definition" })
 vim.keymap.set('n', 'gK', vim.lsp.buf.hover)
-vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
-vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+vim.keymap.set('n', 'gi', function() require('snacks').picker.lsp_implementations() end, { desc = "Goto Implementation" })
+vim.keymap.set('n', 'gr', function() require('snacks').picker.lsp_references() end,
+  { nowait = true, desc = "References" })
+vim.keymap.set('n', 'gy', function() require('snacks').picker.lsp_type_definitions() end,
+  { desc = "Goto T[y]pe Definition" })
 vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help)

@@ -19,7 +19,11 @@ return {
       sources = {
         files = { hidden = true },
         grep = { hidden = true },
-        explorer = { hidden = true },
+        explorer = {
+          hidden = true,
+          ignored = false,                                           -- Show git-ignored files
+          exclude = { ".git", "**/node_modules", "**/__pycache__" }, -- Exclude these patterns
+        },
       },
     },
     notifier = { enabled = true },

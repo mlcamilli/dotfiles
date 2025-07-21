@@ -36,7 +36,11 @@ vim.keymap.set('n', ';', ':')
 vim.keymap.set('n', '<C-p>', function() require('snacks').picker.files() end)
 vim.keymap.set('n', '<C-f>', function() require('snacks').picker.grep() end)
 vim.keymap.set('n', '<C-b>', function() require('snacks').picker.buffers() end)
-vim.keymap.set('n', '<C-r>', function() require('snacks').picker.recent() end)
+vim.keymap.set('n', '<C-r>', function() 
+  require('snacks').picker.recent({ 
+    filter = { cwd = true }  -- Only show files from current working directory
+  }) 
+end)
 
 
 

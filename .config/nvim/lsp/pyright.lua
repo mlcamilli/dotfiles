@@ -17,7 +17,9 @@ return {
     disableOrganizeImports = true,
     python = {
       analysis = {
-        diagnosticSeverityOverrides = {}
+        diagnosticSeverityOverrides = {},
+        -- Ignore all files for analysis to exclusively use Ruff for linting
+        ignore = { '*' },
       }
     }
   }

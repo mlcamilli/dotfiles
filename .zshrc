@@ -107,6 +107,7 @@ alias top ="btop"
 alias cat="batcat"
 alias ls="eza"
 alias release="git log --pretty=format:'* %s' --reverse \`git describe --tags --abbrev=0\`..HEAD"
+alias dive="docker run -ti --rm  -v /var/run/docker.sock:/var/run/docker.sock docker.io/wagoodman/dive"
 export DISABLE_AUTO_TITLE='true'
 
 

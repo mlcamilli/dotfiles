@@ -17,3 +17,9 @@ au BufRead,BufNewFile *.astro set filetype=astro
 au BufRead,BufNewFile *.yml set filetype=yaml
 au BufRead,BufNewFile *.yml* set filetype=yaml
 ]])
+
+vim.filetype.add({
+  pattern = {
+    ["%.env%..*"] = "sh",
+  },
+})

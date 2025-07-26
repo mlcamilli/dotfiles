@@ -2,7 +2,7 @@ SHELL=/bin/bash
 
 BASEDIR := $(CURDIR)
 
-install: packages tmux zsh nvim ripgrep asdf pipx link
+install: packages yazi sad tmux zsh nvim ripgrep asdf uv link zoxide
 
 light: packages zsh nvim ripgrep link
 
@@ -17,6 +17,8 @@ link:
 	ln -sfn ${BASEDIR}/.tmuxp ~/.tmuxp
 	ln -sfn ${BASEDIR}/.tmux.conf ~/.tmux.conf
 	ln -sfn ${BASEDIR}/.ripgreprc ~/.ripgreprc
+	ln -sfn ${BASEDIR}/.tool-versions ~/.tool-versions
+	ln -sfn ${BASEDIR}/yazi.toml ~/.config/yazi/yazi.toml
 	mkdir -p ~/.config/btop/ && ln -sfn ${BASEDIR}/.config/btop/btop.conf ~/.config/btop/btop.conf
 
 
@@ -50,10 +52,13 @@ ripgrep:
 
 packages:
 	$(if $(NO_SUDO),,sudo )apt install $(shell cat pkglist)
+
+sad:
 	wget 'https://github.com/ms-jpq/sad/releases/latest/download/x86_64-unknown-linux-gnu.deb'
 	$(if $(NO_SUDO),,sudo )apt install ./x86_64-unknown-linux-gnu.deb
-	rm x86_64-unknown-linux-gnu.deb
-	wget https://github.com/sxyazi/yazi/releases/download/v0.2.5/yazi-x86_64-unknown-linux-gnu.zip
+
+yazi:
+	wget https://github.com/sxyazi/yazi/releases/download/v25.5.31/yazi-x86_64-unknown-linux-gnu.zip
 	unzip yazi-x86_64-unknown-linux-gnu
 	$(if $(NO_SUDO),,sudo )mv yazi-x86_64-unknown-linux-gnu/yazi /usr/local/bin/yazi
 	rm -rf yazi-x86_64-unknown-linux-gnu*
@@ -64,20 +69,16 @@ asdf:
 	asdf plugin add nodejs
 	asdf plugin add python
 	asdf plugin add pnpm
-	bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
-	asdf install nodejs 20.10.0
-	asdf install pnpm 8.15.1
-	asdf global nodejs 20.10.0
-	asdf install python 3.10.5
-	asdf global python 3.10.5
+	asdf plugin add ruby
+	asdf plugin add golang
+	asdf plugin add rust
+	asdf install
 
-pipx:
-	@if [ -d ~/.local/pipx ] ; then \
-		rm -rf ~/local/pipx; \
-	fi
-	python -m pip install --user pipx
-	python -m pipx ensurepath
-	pipx install tmuxp ruff ranger-fm
+uv:
+	curl -LsSf https://astral.sh/uv/install.sh | sh
+	uv tool install ensurepath
+	uv tool install tmuxp
+	uv tool install ruff
 
 windows:
 	curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.1.1/win32yank-x64.zip

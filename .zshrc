@@ -158,3 +158,11 @@ esac
 # export NOTION_TOKEN=$(op read "op://dev/notion_token/credential")
 # export OPEN_API_KEY=$(op read "op://dev/openapi_token/credential")
 eval "$(zoxide init zsh)"
+eval "$(uv generate-shell-completion zsh)"
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}

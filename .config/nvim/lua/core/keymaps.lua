@@ -40,7 +40,8 @@ vim.keymap.set('n', '<C-f>', function()
     hidden = true,
     follow = true,
     respect_gitignore = true,
-    live = true,
+    live = false,
+    need_search = false
   })
 end)
 vim.keymap.set('n', '<C-b>', function() require('snacks').picker.buffers() end)

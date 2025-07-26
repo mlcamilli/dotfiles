@@ -157,3 +157,4 @@ esac
 # export GITHUB_TOKEN=$(op read "op://dev/github_pat/credential")
 # export NOTION_TOKEN=$(op read "op://dev/notion_token/credential")
 # export OPEN_API_KEY=$(op read "op://dev/openapi_token/credential")
+eval "$(zoxide init zsh)"

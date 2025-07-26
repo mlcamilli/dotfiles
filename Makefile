@@ -87,3 +87,8 @@ windows:
 	$(if $(NO_SUDO),,sudo )mv /tmp/win32yank.exe /mnt/c/Program\ Files/win32yank/
 	$(if $(NO_SUDO),,sudo )apt install wslu
 	$(if $(NO_SUDO),,sudo )ln -sfn /mnt/c/Program\ Files/win32yank/win32yank.exe /usr/local/bin
+
+zoxide:
+	curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+
+

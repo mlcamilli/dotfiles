@@ -19,10 +19,6 @@ vim.keymap.set("n", "<A-l>", ":BufferLineCycleNext<CR>", { silent = true })
 -- Set jj to esc
 vim.keymap.set('i', 'jj', '<Esc>')
 
--- NVIM Tree
--- vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { silent = true })
-vim.keymap.set('n', '<leader>r', ':NvimTreeRefresh<CR>')
-vim.keymap.set('n', '<leader>n', ':NvimTreeFindFile<CR>')
 
 -- Paste mode
 vim.keymap.set('n', '<F6>', ':set paste!<cr>')
@@ -87,12 +83,6 @@ imap_expr('<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]])
 imap_expr('<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]])
 
 
--- Mini Files Keybind
-local minifiles_toggle = function()
-  local files = require('mini.files')
-  if not files.close() then files.open(vim.api.nvim_buf_get_name(0)) end
-end
-
 
 -- File Explorer Keybind
 vim.keymap.set('n', '<C-n>', function() require('snacks').explorer.open() end, { silent = true })
@@ -107,3 +97,13 @@ vim.keymap.set('n', 'gr', function() require('snacks').picker.lsp_references() e
 vim.keymap.set('n', 'gy', function() require('snacks').picker.lsp_type_definitions() end,
   { desc = "Goto T[y]pe Definition" })
 vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help)
+-- Toggle keymaps
+vim.keymap.set('n', '<leader>tz', function() require('snacks').zen() end, { desc = "Zen Mode" })
+vim.keymap.set('n', '<leader>tl', function() 
+  vim.o.number = not vim.o.number
+  vim.o.relativenumber = vim.o.number and vim.o.relativenumber or false
+end, { desc = "Line Numbers" })
+vim.keymap.set('n', '<leader>tr', function() vim.o.relativenumber = not vim.o.relativenumber end, { desc = "Relative Numbers" })
+vim.keymap.set('n', '<leader>tp', function() vim.g.minipairs_disable = not vim.g.minipairs_disable end, { desc = "Mini Pairs" })
+vim.keymap.set('n', '<leader>ts', function() vim.o.spell = not vim.o.spell end, { desc = "Spelling" })
+vim.keymap.set('n', '<leader>th', function() vim.cmd('nohlsearch | diffupdate | normal! <C-L>') end, { desc = "Clear Search & Redraw" })

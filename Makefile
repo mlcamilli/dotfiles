@@ -19,7 +19,7 @@ link:
 	ln -sfn ${BASEDIR}/.tmux.conf ~/.tmux.conf
 	ln -sfn ${BASEDIR}/.ripgreprc ~/.ripgreprc
 	ln -sfn ${BASEDIR}/.tool-versions ~/.tool-versions
-	ln -sfn ${BASEDIR}/yazi ~/.config/yazi
+	mkdir -p ~/.config/yazi && ln -sfn ${BASEDIR}/yazi/yazi.toml ~/.config/yazi/yazi.toml
 	mkdir -p ~/.config/btop/ && ln -sfn ${BASEDIR}/.config/btop/btop.conf ~/.config/btop/btop.conf
 
 

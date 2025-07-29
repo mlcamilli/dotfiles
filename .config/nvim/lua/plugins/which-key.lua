@@ -10,6 +10,7 @@ return {
     -- Register keybind groups
     wk.add({
       { "<leader>s", group = "Search" },
+      { "<leader>t", group = "Toggle" },
       { "g", group = "Goto" },
     })
   end,

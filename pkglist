@@ -2,7 +2,7 @@ btop
 ncdu
 zsh
 libevent-dev
-ncurses-dev
+libncurses-dev
 duf
 libfuse2
 libbz2-dev
@@ -20,6 +20,6 @@ libxmlsec1-dev
 libffi-dev
 liblzma-dev
 bat
-eza
 unzip
-yacc
+byacc
+libyaml-dev

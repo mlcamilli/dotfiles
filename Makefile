@@ -2,7 +2,7 @@ SHELL=/bin/bash
 
 BASEDIR := $(CURDIR)
 
-install: packages yazi sad tmux zsh nvim ripgrep asdf uv link zoxide
+install: packages yazi sad tmux eza zsh nvim ripgrep asdf uv link zoxide
 
 light: packages zsh nvim ripgrep link
 
@@ -13,21 +13,22 @@ link:
 	mkdir -p ~/.config && ln -sfn ${BASEDIR}/.config/nvim/ ~/.config/nvim
 	# git
 	ln -sfn ${BASEDIR}/.gitconfig ~/.gitconfig
+	ln -sfn ${BASEDIR}/wezterm ~/.config/wezterm
 	# Tmux
 	ln -sfn ${BASEDIR}/.tmuxp ~/.tmuxp
 	ln -sfn ${BASEDIR}/.tmux.conf ~/.tmux.conf
 	ln -sfn ${BASEDIR}/.ripgreprc ~/.ripgreprc
 	ln -sfn ${BASEDIR}/.tool-versions ~/.tool-versions
-	ln -sfn ${BASEDIR}/yazi.toml ~/.config/yazi/yazi.toml
+	ln -sfn ${BASEDIR}/yazi ~/.config/yazi
 	mkdir -p ~/.config/btop/ && ln -sfn ${BASEDIR}/.config/btop/btop.conf ~/.config/btop/btop.conf
 
 
 # Install Tmux
 tmux:
-	curl -sLo ~/tmux.tar.gz https://github.com/tmux/tmux/releases/download/3.5a/tmux-3.5a.tar.gz
-	tar -zxf ~/tmux.tar.gz -C ~/
-	cd ~/tmux-3.5a; sh configure; make
-	rm -rf ~/tmux-3.5a; rm ~/tmux.tar.gz
+	curl -sLo tmux.tar.gz https://github.com/tmux/tmux/releases/download/3.5a/tmux-3.5a.tar.gz
+	tar -zxf tmux.tar.gz
+	cd tmux-3.5a; sh configure && make; $(if $(NO_SUDO),,sudo )make install
+	rm -rf tmux-3.5a; rm tmux.tar.gz
 	@if [ ! -d ~/.tmux/plugins/tpm ] ; then \
 		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm ; \
 	fi
@@ -53,19 +54,29 @@ ripgrep:
 packages:
 	$(if $(NO_SUDO),,sudo )apt install $(shell cat pkglist)
 
+eza:
+	$(if $(NO_SUDO),,sudo )mkdir -p /etc/apt/keyrings
+	wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | $(if $(NO_SUDO),,sudo )gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+	echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | $(if $(NO_SUDO),,sudo )tee /etc/apt/sources.list.d/gierens.list
+	$(if $(NO_SUDO),,sudo )chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+	$(if $(NO_SUDO),,sudo )apt update
+	$(if $(NO_SUDO),,sudo )apt install -y eza
+
 sad:
 	wget 'https://github.com/ms-jpq/sad/releases/latest/download/x86_64-unknown-linux-gnu.deb'
 	$(if $(NO_SUDO),,sudo )apt install ./x86_64-unknown-linux-gnu.deb
 
 yazi:
-	wget https://github.com/sxyazi/yazi/releases/download/v25.5.31/yazi-x86_64-unknown-linux-gnu.zip
-	unzip yazi-x86_64-unknown-linux-gnu
-	$(if $(NO_SUDO),,sudo )mv yazi-x86_64-unknown-linux-gnu/yazi /usr/local/bin/yazi
-	rm -rf yazi-x86_64-unknown-linux-gnu*
+	wget https://github.com/sxyazi/yazi/releases/download/v25.5.31/yazi-x86_64-unknown-linux-musl.zip
+	unzip yazi-x86_64-unknown-linux-musl
+	$(if $(NO_SUDO),,sudo )mv yazi-x86_64-unknown-linux-musl/yazi /usr/local/bin/yazi
+	rm -rf yazi-x86_64-unknown-linux-*
 
 
 asdf:
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+	curl -sLo asdf.tar.gz https://github.com/asdf-vm/asdf/releases/download/v0.18.0/asdf-v0.18.0-linux-amd64.tar.gz
+	$(if $(NO_SUDO),,sudo )tar -xvf asdf.tar.gz -C /usr/local/bin/
+	rm asdf.tar.gz
 	asdf plugin add nodejs
 	asdf plugin add python
 	asdf plugin add pnpm
@@ -76,7 +87,6 @@ asdf:
 
 uv:
 	curl -LsSf https://astral.sh/uv/install.sh | sh
-	uv tool install ensurepath
 	uv tool install tmuxp
 	uv tool install ruff
 

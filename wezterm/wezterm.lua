@@ -1,5 +1,5 @@
 local wezterm = require 'wezterm'
-return {
+local config = {
   font = wezterm.font 'Hack Nerd Font',
   font_size = 11.0,
   color_scheme = 'Dracula (Official)',
@@ -22,3 +22,16 @@ return {
     },
   },
 }
+
+
+if string.find(wezterm.target_triple, "windows") then
+  -- Apply Windows-specific configurations here
+  config.default_prog = { "pwsh.exe" }   -- Example: Set default shell to PowerShell on Windows
+  print("WezTerm is running on Windows.")
+else
+  -- Apply configurations for other operating systems
+  config.default_prog = { "zsh" }   -- Example: Set default shell to bash on non-Windows
+  print("WezTerm is running on a non-Windows OS.")
+end
+
+return config

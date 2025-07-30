@@ -102,4 +102,7 @@ windows:
 zoxide:
 	curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 
-
+fzf:
+	rm -rf ~/.fzf || true
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	bash ~/.fzf/install

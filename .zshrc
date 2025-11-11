@@ -145,14 +145,6 @@ if [ "$DOCKER_ENABLED" = "true" ]; then
 fi
 unsetopt PROMPT_SP
 
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-#
 # # 1Password Secret Injection
 # export GITHUB_TOKEN=$(op read "op://dev/github_pat/credential")
 # export NOTION_TOKEN=$(op read "op://dev/notion_token/credential")

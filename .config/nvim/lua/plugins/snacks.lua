@@ -27,6 +27,11 @@ return {
       },
     },
     notifier = { enabled = true },
+    styles = {
+      notification = {
+        wo = { wrap = true },
+      },
+    },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = true },

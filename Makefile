@@ -22,6 +22,7 @@ link:
 	mkdir -p ~/.config/yazi && ln -sfn ${BASEDIR}/yazi/yazi.toml ~/.config/yazi/yazi.toml
 	mkdir -p ~/.config/btop/ && ln -sfn ${BASEDIR}/.config/btop/btop.conf ~/.config/btop/btop.conf
 
+	ln -sfn ${BASEDIR}/personal_claude.md ~/.claude/CLAUDE.md
 
 # Install Tmux
 tmux:

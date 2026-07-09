@@ -1,6 +1,6 @@
 return {
   settings = {
-    ty = {
+    pyrefly = {
       diagnosticMode = 'workspace',
     },
   },

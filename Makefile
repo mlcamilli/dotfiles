@@ -2,9 +2,9 @@ SHELL=/bin/bash
 
 BASEDIR := $(CURDIR)
 
-install: packages yazi sad tmux eza zsh nvim ripgrep asdf uv link zoxide
+install: packages yazi sad tmux eza zsh nvim ripgrep asdf uv link zoxide precommit
 
-light: packages zsh nvim ripgrep link
+light: packages zsh nvim ripgrep link precommit
 
 link:
 	# zsh
@@ -90,6 +90,12 @@ uv:
 	curl -LsSf https://astral.sh/uv/install.sh | sh
 	uv tool install tmuxp
 	uv tool install ruff
+	uv tool install pre-commit
+
+# Install the gitleaks pre-commit hook in this repo
+precommit:
+	command -v pre-commit >/dev/null 2>&1 || uv tool install pre-commit
+	cd ${BASEDIR} && pre-commit install
 
 windows:
 	curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.1.1/win32yank-x64.zip

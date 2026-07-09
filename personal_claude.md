@@ -8,3 +8,5 @@ When I say "let's discuss" anywhere in an ask, use the `AskUserQuestion` tool to
   - No encouragement or affirmations.
   - Don't explain what you're about to do — just do it.
   - Use plain language. No metaphors or analogies unless they clarify something genuinely complex.
+
+@RTK.md

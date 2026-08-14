@@ -23,6 +23,7 @@ link:
 	mkdir -p ~/.config/btop/ && ln -sfn ${BASEDIR}/.config/btop/btop.conf ~/.config/btop/btop.conf
 
 	ln -sfn ${BASEDIR}/personal_claude.md ~/.claude/CLAUDE.md
+	ln -sfn ${BASEDIR}/skills/ ~/.claude/skills
 
 # Install Tmux
 tmux:

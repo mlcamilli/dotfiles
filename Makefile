@@ -2,7 +2,7 @@ SHELL=/bin/bash
 
 BASEDIR := $(CURDIR)
 
-install: packages yazi sad tmux eza zsh nvim ripgrep asdf uv link zoxide precommit
+install: packages yazi sad tmux eza zsh nvim ripgrep uv link mise zoxide precommit
 
 light: packages zsh nvim ripgrep link precommit
 
@@ -18,7 +18,7 @@ link:
 	ln -sfn ${BASEDIR}/.tmuxp ~/.tmuxp
 	ln -sfn ${BASEDIR}/.tmux.conf ~/.tmux.conf
 	ln -sfn ${BASEDIR}/.ripgreprc ~/.ripgreprc
-	ln -sfn ${BASEDIR}/.tool-versions ~/.tool-versions
+	mkdir -p ~/.config/mise && ln -sfn ${BASEDIR}/.config/mise/config.toml ~/.config/mise/config.toml
 	mkdir -p ~/.config/yazi && ln -sfn ${BASEDIR}/yazi/yazi.toml ~/.config/yazi/yazi.toml
 	mkdir -p ~/.config/btop/ && ln -sfn ${BASEDIR}/.config/btop/btop.conf ~/.config/btop/btop.conf
 
@@ -75,23 +75,22 @@ yazi:
 	rm -rf yazi-x86_64-unknown-linux-*
 
 
-asdf:
-	curl -sLo asdf.tar.gz https://github.com/asdf-vm/asdf/releases/download/v0.18.0/asdf-v0.18.0-linux-amd64.tar.gz
-	$(if $(NO_SUDO),,sudo )tar -xvf asdf.tar.gz -C /usr/local/bin/
-	rm asdf.tar.gz
-	asdf plugin add nodejs
-	asdf plugin add python
-	asdf plugin add pnpm
-	asdf plugin add ruby
-	asdf plugin add golang
-	asdf plugin add rust
-	asdf install
+# Requires `make link` first so ~/.config/mise/config.toml exists
+mise:
+	curl -fsSL https://mise.run | sh
+	~/.local/bin/mise install
 
+# --python-preference only-managed keeps tool venvs off mise/system pythons, so
+# bumping a version in .config/mise/config.toml can't break them
 uv:
 	curl -LsSf https://astral.sh/uv/install.sh | sh
-	uv tool install tmuxp
-	uv tool install ruff
-	uv tool install pre-commit
+	for t in tmuxp ruff pre-commit just zizmor parquet-tools tldr; do \
+		uv tool install $$t --python-preference only-managed; \
+	done
+
+# Rebuild every uv tool venv (use after changing/removing a Python install)
+uv-reinstall:
+	uv tool upgrade --all --reinstall --python-preference only-managed
 
 # Install the gitleaks pre-commit hook in this repo
 precommit:

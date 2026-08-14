@@ -52,7 +52,7 @@ ZSH_THEME="dracula"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker pyenv tmuxinator zsh-autosuggestions safe-paste colored-man-pages docker-compose asdf)
+plugins=(git docker zsh-autosuggestions safe-paste colored-man-pages docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -113,7 +113,6 @@ export DISABLE_AUTO_TITLE='true'
 
 #Turn off auto cd
 unsetopt AUTO_CD
-export PATH=$PATH:$HOME/.asdf/installs/nodejs/14.5.0/.npm/bin/
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -121,8 +120,8 @@ export RIPGREP_CONFIG_PATH=~/.ripgreprc
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 
-if [ -f ~/.asdf/asdf.sh ]; then
-    . $HOME/.asdf/asdf.sh
+if command -v mise >/dev/null 2>&1; then
+    eval "$(mise activate zsh)"
 fi
 
 if [ -f ~/.env_file ]; then

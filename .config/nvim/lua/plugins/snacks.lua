@@ -16,6 +16,20 @@ return {
     input = { enabled = true },
     picker = {
       enabled = true,
+      win = {
+        input = {
+          keys = {
+            ["K"] = "list_top",
+            ["J"] = "list_bottom",
+          },
+        },
+        list = {
+          keys = {
+            ["K"] = "list_top",
+            ["J"] = "list_bottom",
+          },
+        },
+      },
       sources = {
         files = { hidden = true },
         grep = { hidden = true },
@@ -23,6 +37,10 @@ return {
           hidden = true,
           ignored = false,                                           -- Show git-ignored files
           exclude = { ".git", "**/node_modules", "**/__pycache__" }, -- Exclude these patterns
+          win = {
+            list = { keys = { ["<C-n>"] = "close" } },
+            input = { keys = { ["<C-n>"] = { "close", mode = { "n", "i" } } } },
+          },
         },
       },
     },

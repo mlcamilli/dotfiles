@@ -1,0 +1,103 @@
+onboarding = false
+# herdr — https://herdr.dev/docs/configuration/
+#
+# Keybindings mirror ~/.tmux.conf; each one is commented with its tmux original.
+# Bindings that are already herdr defaults are stated explicitly anyway, so this
+# file is a complete description of the setup and survives upstream default
+# changes.
+#
+# Apply edits to a running server with: herdr server reload-config
+
+[theme]
+# Matches wezterm (Dracula Official), oh-my-zsh, nvim (dracula/vim) and the
+# tmux dracula plugin. No auto_switch: there is no dracula light variant and
+# every other tool in this repo is dark-only.
+name = "dracula"
+
+[terminal]
+# tmux: set-option -g default-shell /bin/zsh
+# Set explicitly rather than relying on $SHELL: the account login shell is
+# /bin/bash, so a server started outside an interactive zsh would fall back
+# to bash.
+default_shell = "/bin/zsh"
+
+# tmux: both splits use -c "#{pane_current_path}"
+new_cwd = "follow"
+
+[session]
+# Bring coding-agent sessions back after a server or machine restart.
+resume_agents_on_restore = true
+
+[ui]
+# Distinct symbols per agent state (working / blocked / done / idle).
+status_indicators = "symbols"
+
+[ui.sidebar.agents]
+rows = [
+  ["state_icon", "workspace", "tab"],
+  ["agent"],
+]
+
+[ui.toast]
+delivery = "herdr"
+
+[keys]
+# tmux: set -g prefix C-Space
+prefix = "ctrl+space"
+
+# tmux: bind h/j/k/l select-pane -L/-D/-U/-R
+# Kept behind the prefix so nvim keeps <C-hjkl> (window nav) and <A-h>/<A-l>
+# (BufferLine cycling).
+focus_pane_left  = "prefix+h"
+focus_pane_down  = "prefix+j"
+focus_pane_up    = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# tmux: bind | split-window -h   (side by side)
+# tmux: bind - split-window -v   (stacked)
+# herdr names splits by the divider, which is the inverse of tmux's -h/-v:
+# split_vertical draws a vertical divider, i.e. the new pane lands to the right.
+split_vertical   = "prefix+|"
+split_horizontal = "prefix+minus"
+
+# tmux: bind x kill-window (overrides tmux's default x = kill-pane)
+close_tab  = "prefix+x"
+# No tmux equivalent — panes are currently closed by exiting the shell.
+close_pane = "prefix+shift+x"
+
+# tmux defaults carried over unchanged
+new_tab      = "prefix+c"
+next_tab     = "prefix+n"
+previous_tab = "prefix+p"
+detach       = "prefix+d"
+zoom         = "prefix+z"
+
+# tmux: bind w choose-tree (workspace/space picker)
+workspace_picker = "prefix+w"
+
+# prefix+r freed for reviewr (resize mode unused)
+resize_mode = ""
+navigate_workspace_up   = "k"
+navigate_workspace_down = "j"
+
+# herdr-plus — Projects browser and Quick Actions launcher.
+# prefix+up / prefix+down follow the plugin's own documented convention and
+# avoid every tmux-parity binding above. Both are also reachable from herdr's
+# action menu without a binding.
+[[keys.command]]
+key = "prefix+up"
+type = "plugin_action"
+command = "cloudmanic.herdr-plus.projects"
+description = "herdr-plus: projects"
+
+[[keys.command]]
+key = "prefix+down"
+type = "plugin_action"
+command = "cloudmanic.herdr-plus.quick-actions"
+description = "herdr-plus: quick actions"
+
+[[keys.command]]
+key = "prefix+r"
+type = "plugin_action"
+command = "persiyanov.reviewr.toggle"
+description = "reviewr: toggle pane"

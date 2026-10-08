@@ -22,6 +22,13 @@ link:
 	mkdir -p ~/.config/yazi && ln -sfn ${BASEDIR}/yazi/yazi.toml ~/.config/yazi/yazi.toml
 	mkdir -p ~/.config/btop/ && ln -sfn ${BASEDIR}/.config/btop/btop.conf ~/.config/btop/btop.conf
 
+	# herdr (install is opt-in: make herdr)
+	mkdir -p ~/.config/herdr && ln -sfn ${BASEDIR}/.config/herdr/config.toml ~/.config/herdr/config.toml
+	# herdr-plus keeps its config dir across uninstall/upgrade, so linking in is safe
+	mkdir -p ~/.config/herdr/plugins/config/cloudmanic.herdr-plus
+	ln -sfn ${BASEDIR}/.config/herdr/herdr-plus/projects ~/.config/herdr/plugins/config/cloudmanic.herdr-plus/projects
+	ln -sfn ${BASEDIR}/.config/herdr/herdr-plus/worktrees ~/.config/herdr/plugins/config/cloudmanic.herdr-plus/worktrees
+
 	ln -sfn ${BASEDIR}/personal_claude.md ~/.claude/CLAUDE.md
 	ln -sfn ${BASEDIR}/skills/ ~/.claude/skills
 
@@ -34,6 +41,13 @@ tmux:
 	@if [ ! -d ~/.tmux/plugins/tpm ] ; then \
 		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm ; \
 	fi
+
+# herdr — installed directly from upstream to track latest, and kept out of
+# the `install` / `light` chains so a fresh bootstrap never depends on it.
+# Requires `make link` first so ~/.config/herdr/ exists.
+herdr:
+	curl -fsSL https://herdr.dev/install.sh | sh
+	PATH="$$HOME/.local/bin:$$PATH" herdr plugin install cloudmanic/herdr-plus --yes
 
 zsh:
 	sh -c "$$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc

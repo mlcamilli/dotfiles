@@ -1,0 +1,22 @@
+# Fires automatically on `herdr worktree create`/`open` for this repo
+# (herdr-plus subscribes to worktree.created / worktree.opened).
+# No working_dir: the worktree checkout is the root.
+repo = "rhythm-app"
+
+[[tabs]]
+name = "rhythm"
+
+[[tabs.panes]]
+label = "editor"
+command = "nvim"
+
+[[tabs.panes]]
+label = "claude"
+command = "claude"
+split = "right"
+ratio = 0.5
+
+[[tabs.panes]]
+label = "shell"
+split = "down"
+ratio = 0.5

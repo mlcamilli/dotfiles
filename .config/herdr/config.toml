@@ -72,6 +72,9 @@ previous_tab = "prefix+p"
 detach       = "prefix+d"
 zoom         = "prefix+z"
 
+# tmux: bind Escape copy-mode (herdr hardcodes Esc to cancel the prefix)
+copy_mode = "prefix+v"
+
 # tmux: bind w choose-tree (workspace/space picker)
 workspace_picker = "prefix+w"
 
@@ -101,3 +104,14 @@ key = "prefix+r"
 type = "plugin_action"
 command = "persiyanov.reviewr.toggle"
 description = "reviewr: toggle pane"
+
+# herdr's prefix+? panel can't take custom sections, so reviewr's own keymaps
+# live in a cheatsheet popup. less's q closes it. prefix+shift+r is herdr's
+# default reload_config, so the cheatsheet takes ctrl instead.
+[[keys.command]]
+key = "prefix+ctrl+r"
+type = "popup"
+command = "less ~/.config/herdr/reviewr-keys.txt"
+width = 64
+height = "80%"
+description = "reviewr: keymap cheatsheet"

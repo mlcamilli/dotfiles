@@ -59,6 +59,9 @@ shell bottom-right. Quick Actions is on `prefix+Down`.
 
 Both are also reachable from herdr's action menu without any keybinding.
 
+reviewr (diff review pane) toggles on `prefix+r`. `prefix+ctrl+r` opens a popup
+with its keymaps, read from `.config/herdr/reviewr-keys.txt`.
+
 ### Gotchas
 
 - Invalid keybindings are disabled individually rather than rejecting the file,

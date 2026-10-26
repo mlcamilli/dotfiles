@@ -1,0 +1,47 @@
+reviewr — keymaps                         (q to close)
+toggle pane: prefix+r     full in-app help: ?
+
+TABS / SCOPE
+  1 2 3        Changes / All files / PR
+  u b t g      uncommitted / branch / last turn / commits
+  B            pick base branch
+  G            pick commits to review
+
+NAVIGATE
+  j k          move cursor
+  ] [          next / prev hunk (crosses files)
+  f F          next / prev file
+  C-d C-u      half page down / up
+  Tab          switch focus (navigator <-> diff)
+  → ←          expand / collapse, or scroll sideways
+  /            search files and code
+  C-f          find in file
+  :N           jump to line (:0 first, :$ last)
+  w            toggle line wrap
+  m            markdown rendered / source
+  z            hide / show navigator
+  < >          grow / shrink navigator
+  r            refresh
+
+REVIEW (in the diff)
+  v            select lines (then j/k to extend)
+  c            comment on line / selection
+  e            edit comment, or open file in $EDITOR
+  d            delete comment
+  n N          next / prev comment
+  l            list all comments
+  s            send comments to agent
+  y            copy comments to clipboard
+  Esc          clear selection
+
+COMMENT BOX
+  Enter        save
+  Esc          cancel
+  S-Enter C-j  newline
+
+PR TAB
+  o            open PR in browser
+
+QUIT
+  q            quit (asks if comments unsent)
+  Q            quit and drop unsent comments

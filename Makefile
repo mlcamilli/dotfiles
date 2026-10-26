@@ -24,6 +24,7 @@ link:
 
 	# herdr (install is opt-in: make herdr)
 	mkdir -p ~/.config/herdr && ln -sfn ${BASEDIR}/.config/herdr/config.toml ~/.config/herdr/config.toml
+	ln -sfn ${BASEDIR}/.config/herdr/reviewr-keys.txt ~/.config/herdr/reviewr-keys.txt
 	# herdr-plus keeps its config dir across uninstall/upgrade, so linking in is safe
 	mkdir -p ~/.config/herdr/plugins/config/cloudmanic.herdr-plus
 	ln -sfn ${BASEDIR}/.config/herdr/herdr-plus/projects ~/.config/herdr/plugins/config/cloudmanic.herdr-plus/projects

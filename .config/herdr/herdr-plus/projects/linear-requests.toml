@@ -1,0 +1,21 @@
+name = "linear-requests"
+description = "linear-requests"
+working_dir = "~/dev/linear-requests"
+
+[[tabs]]
+name = "linear-request"
+
+[[tabs.panes]]
+label = "editor"
+command = "nvim"
+
+[[tabs.panes]]
+label = "claude"
+command = "claude"
+split = "right"
+ratio = 0.5
+
+[[tabs.panes]]
+label = "shell"
+split = "down"
+ratio = 0.5

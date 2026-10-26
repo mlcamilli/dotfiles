@@ -2,6 +2,7 @@ local wezterm = require 'wezterm'
 local config = {
   font = wezterm.font 'Hack Nerd Font',
   font_size = 11.0,
+  unicode_version = 14,
   color_scheme = 'Dracula (Official)',
   tab_bar_at_bottom = false,
   use_fancy_tab_bar = false,

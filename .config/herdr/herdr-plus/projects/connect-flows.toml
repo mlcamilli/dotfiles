@@ -1,0 +1,23 @@
+# herdr-plus project — pick it from the Projects browser (prefix+Up) or
+# `herdr-plus open connect-flows`. Creates a workspace rooted at working_dir.
+name = "connect-flows"
+description = "connect-flows"
+working_dir = "~/dev/connect-flows"
+
+[[tabs]]
+name = "connect-flows"
+
+[[tabs.panes]]
+label = "editor"
+command = "nvim"
+
+[[tabs.panes]]
+label = "claude"
+command = "claude"
+split = "right"
+ratio = 0.5
+
+[[tabs.panes]]
+label = "shell"
+split = "down"
+ratio = 0.5
